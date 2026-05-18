@@ -1,42 +1,49 @@
 <div class="page-container">
     <section class="profile-card">
-        <div class="profile-image-container">
-            <img [src]="user()?.avatarUrl" alt="Foto de perfil" class="profile-image">
-        </div>
 
-        <h1>{{ user()?.name }}</h1>
-
-        <p class="subtitle">Desarrollador</p>
-
-        <div class="info-container">
-            <div class="info-item">
-                <span class="label"> ID de Usuario  </span>
-                <span class="value"> {{ user()?.id}}</span>
+        @if (user(); as currentUser) {
+            <div class="profile-image-container">
+                <img [src]="currentUser.avatarUrl" alt="Foto de perfil" class="profile-image">
             </div>
 
-            <div class="info-item">
-                <span class="label"> Ubicación</span>
-                <span class="value">{{ user()?.location }}</span>
-            </div>
+            <h1>{{ currentUser.name }}</h1>
+            <p class="subtitle">Desarrollador</p>
 
-            <div class="info-item">
-                <span class="label"> Repositorios </span>
-                <span class="value">{{user()?.repos }}</span>
-            </div>
+            <div class="info-container">
 
-            <div class="info-item">
-                <span class="label"> Miembro desde  </span>
-                <span class="value"> 2026 </span>
-            </div>
+                <div class="info-item">
+                    <span class="label">ID de Usuario</span>
+                    <span class="value">{{ currentUser.id }}</span>
+                </div>
 
-        </div>
+                <div class="info-item">
+                    <span class="label">Ubicación</span>
+                    <span class="value">{{ currentUser.location }}</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="label">Repositorios</span>
+                    <span class="value">{{ currentUser.repos }}</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="label">Miembro desde</span>
+                    <span class="value">
+                        {{ currentUser.createdAt | date:'dd/MM/yyyy' }}
+                    </span>
+                </div>
+
+            </div>
+        }
 
     </section>
-
 </div>
+
 <div>
     <div class="game-explanation">
-        <p>Actualmente me encuentro definiendo la lógica y mecánicas del juego propio
-            que será implementado en los próximos sprints.</p>
+        <p>
+            Actualmente me encuentro definiendo la lógica y mecánicas del juego propio
+            que será implementado en los próximos sprints.
+        </p>
     </div>
 </div>

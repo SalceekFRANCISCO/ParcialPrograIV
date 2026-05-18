@@ -4,7 +4,8 @@ export interface User {
     avatarUrl: string,
     repos: number,
     location: string,
-    createAt: Date,
+    // createdAt: Date,
+    createdAt: string,
     isActive: boolean,
     email?: string
 };

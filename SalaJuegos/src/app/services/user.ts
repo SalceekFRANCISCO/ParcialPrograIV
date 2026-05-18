@@ -26,7 +26,7 @@ export class UserService  {
                     avatarUrl: data.avatar_url,
                     repos: data.public_repos,
                     location: data.location,
-                    createAt: new Date(), //esto esta mal
+                    createdAt: data.created_at, 
                     isActive: true
                 }
                 this.user.set(finalUser);
