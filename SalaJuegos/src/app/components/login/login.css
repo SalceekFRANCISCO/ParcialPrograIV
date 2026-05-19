@@ -1,0 +1,57 @@
+
+section{
+    display: flex;
+    justify-content: center;
+}
+
+.login-text{
+    text-transform: capitalize;
+    margin-bottom: 5px;
+
+}
+
+.align-texts{
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.form-text{
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-card-login{
+    display: flex;
+    flex-direction: column;
+}
+
+.button-center{
+    display: flex;
+    justify-content: center;
+}
+
+.form-button-autologin{
+    background: rgb(90, 3, 3);
+    margin-left: 5px;
+    margin-top: 5px;
+    text-transform: capitalize;
+
+}
+
+.form-button-autologin:hover{
+    background: rgb(146, 1, 1);
+    cursor: pointer;
+    /* transition: 0.03; */
+    transition: var(--transition);
+}
+
+.form-text{
+    display: flex;
+    justify-content: center;
+}
+
+.error-message{
+    margin-bottom: 5px;
+    color: red;
+}

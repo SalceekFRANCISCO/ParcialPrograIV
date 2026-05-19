@@ -1,1 +1,124 @@
-/* You can add global styles to this file, and also import other style files */
+:root{
+    --primary-color-button: darkgreen;
+    --second-color-button: green;
+    --primary-color-font: aliceblue;  /*boton blanco botones */
+    --transition: all 0.3s ease;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --button-height: 40px;
+}
+
+
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY GENERAL */
+
+body {
+    min-height: 100vh;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    background:
+        linear-gradient(
+            180deg,
+            #15162c 0%,
+            #4338ca 100%
+        );
+
+    color: white;
+    background-attachment: fixed;
+}
+
+/* LINKS */
+
+a {
+    text-decoration: none;
+    color: white; 
+    transition: var(--transition); 
+}
+
+a:hover {
+    color: #8b5cf6;
+}
+
+/* CONTENEDOR GENERAL */
+
+.page-container {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 20px;
+}
+
+app-root {
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+
+    flex: 1;
+}
+
+
+/* BOTONES Y TARJETAS */
+
+.form-button{
+    width: 60%;
+    height: var(--button-height);
+    border: none;
+    border-radius: 6px;
+    color: var(--primary-color-font);
+    background: var(--primary-color-button); 
+    transition: var(--transition);
+}
+
+.form-input{
+    margin-bottom: 10px;
+    border-radius: 7px;    
+    border: none;
+    outline: none;
+    transition: var(--transition);
+    height: var(--button-height);
+    padding-left: 15px;
+}
+
+.form-button:hover{
+    cursor: pointer;
+    background-color: var(--second-color-button);
+    transition: var(--transition);
+}
+
+.form-card{
+    border: 1px solid black;
+    padding: 33px;
+    width: 350px;
+    max-width: 100%;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    background: rgba(15, 23, 42, 0.85);
+    border-radius: 6px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.button-center{
+    display: flex;
+    justify-content: center;
+}
+
+.error-message{
+    margin-bottom: 5px;
+    color: red;
+}

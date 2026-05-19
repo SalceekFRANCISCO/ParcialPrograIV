@@ -1,0 +1,50 @@
+.footer {
+
+    width: 100%;
+
+    padding: 25px 20px;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    backdrop-filter: blur(10px);
+
+    border-top: 1px solid rgba(255,255,255,0.08);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: auto;
+}
+
+.footer-content {
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    color: #d8b4fe;
+
+    font-size: 1rem;
+
+    font-weight: 500;
+}
+
+.separator {
+
+    color: rgba(255,255,255,0.3);
+}
+
+/* HOVER */
+
+.footer-content p {
+
+    transition: 0.3s;
+}
+
+.footer-content p:hover {
+    color: white;
+    transform: translateY(-2px);
+}
