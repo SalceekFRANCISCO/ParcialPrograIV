@@ -93,6 +93,7 @@ main {
     transition: var(--transition);
     height: var(--button-height);
     padding-left: 15px;
+    box-shadow: 0 0 14px #6623ff
 }
 
 .form-button:hover{

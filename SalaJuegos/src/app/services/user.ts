@@ -27,7 +27,6 @@ export class UserService  {
                     repos: data.public_repos,
                     location: data.location,
                     createdAt: data.created_at, 
-                    isActive: true
                 }
                 this.user.set(finalUser);
                 this.loading.set(false);
