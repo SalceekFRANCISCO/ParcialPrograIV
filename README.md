@@ -4,7 +4,7 @@
 
 #### Enlace de proyecto:
 
-<https://parcial-progra-iv-fs-git-sprint1-francisco-salceek-s-projects.vercel.app/login>
+<https://parcial-progra-iv-fs.vercel.app/login>
 
 ### Tecnologias usadas:
 
