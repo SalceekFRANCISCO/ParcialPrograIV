@@ -1,14 +1,28 @@
 <nav class="navbar">
   <div>
+    @if(currentUser()){
+      <p>Hola {{showuser()}}</p>
+    }
+    @else{
+      <p>Murdock Games</p>
+    }
   </div>
   <div class="header-routes">
     <div>
-      <a routerLink="/login" routerLinkActive="active">Login</a>
+      @if(authenticateUser()){
         <a routerLink="/home">Home</a>
         <a routerLink="/who-i-am"routerLinkActive="active">Who I Am</a>
-        <a routerLink="/register" routerLinkActive="active">Register</a>
+      }
+      
+      @if(!authenticateUser()){
+        <a routerLink="/login" routerLinkActive="active" (click)="clearError()">Login</a>
+        <a routerLink="/register" routerLinkActive="active" (click)="clearError()">Register</a>
+      }
     </div>
   </div>
   <div>
+    @if(showLogOutButton()){
+      <button class="form-button form-button-logout" (click)="logOut()">Cerrar Sesion</button>
+    }
   </div>
 </nav>
