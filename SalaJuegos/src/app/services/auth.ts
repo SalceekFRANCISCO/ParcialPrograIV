@@ -15,10 +15,10 @@ export class AuthService {
     user = signal<SessionUser | null>(null);
     isAuthenticated = computed(() => this.user() != null);
     userEmail = computed(()=> this.user()?.email ?? 'invitado');
+    
     currentUser = signal<SessionUser | null>(null);
-
     errorMessage = signal<AuthError | null>(null);
-
+    
     constructor(){
       this.checkSession();
     }
