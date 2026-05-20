@@ -28,3 +28,8 @@ Se implemento la navegación entre componentes y se incluyo un favicon personali
 
 En este segundo sprint se implemento la logica del componente **Login** quien ahora permite a los usuarios iniciar sesion en caso de tener una cuenta, o la opcion de registrarse en la pagina a traves del componente **Register**.
 Se le dio funcionalidad al componente **Home** que es donde tendremos el listado de juegos para acceder.
+
+## Sprint 3
+
+En este tercer sprint se implementaron los juegos: **Ahorcad**, **Mayor y menor** y el componente **Sala de chat**.
+Este ultimo...
