@@ -29,9 +29,12 @@ export class Login {
 
   }
 
-  autoLogin(){
-    this.email = 'franciscosalceek@gmail.com';
-    this.password = 'mortal';
+  autoLogin(email: string, password: string){
+    this.email = email;
+    this.password = password;
+
+    // this.email = 'franciscosalceek@gmail.com';
+    // this.password = 'mortal';
     
 
   }

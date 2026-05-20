@@ -33,6 +33,10 @@ export class Register {
       return 'El usuario ya se encuentra registrado';
     }
 
+    if(error.code === 'weak_password'){
+      return 'La Contraseña debe tener un minimo de 6 caracteres';
+    }
+
     if(error.code === 'anonymous_provider_disabled' || error.code === 'validation_failed'){
       return 'Todos los campos son obligatorios';
     }
