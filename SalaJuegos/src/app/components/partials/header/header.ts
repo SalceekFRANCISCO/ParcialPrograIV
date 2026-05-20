@@ -33,15 +33,28 @@ export class Header{
     await this.auth.logout()
   }
 
-  showLogOutButton(): boolean {
-    if(this.auth.isAuthenticated()){
-      return true;
-      
-    }else{
+
+  showLogOutButton = computed(()=> {
+    const autenticated = this.auth.isAuthenticated();
+
+    if(!autenticated){
       return false;
     }
+    else{
+      return true;
+    }
+  })
 
-  }
+
+  // showLogOutButton(): boolean {
+  //   if(this.auth.isAuthenticated()){
+  //     return true;
+      
+  //   }else{
+  //     return false;
+  //   }
+
+  // }
 
   authenticateUser(): boolean{
     return this.auth.isAuthenticated();

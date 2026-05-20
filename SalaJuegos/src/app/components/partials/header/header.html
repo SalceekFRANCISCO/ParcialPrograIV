@@ -1,28 +1,32 @@
 <nav class="navbar">
-  <div>
-    @if(currentUser()){
-      <p>Hola {{showuser()}}</p>
-    }
-    @else{
-      <p>Murdock Games</p>
-    }
-  </div>
-  <div class="header-routes">
+  <div class="navbar-options">  
     <div>
-      @if(authenticateUser()){
-        <a routerLink="/home">Home</a>
-        <a routerLink="/who-i-am"routerLinkActive="active">Who I Am</a>
+      @if(currentUser()){
+        <p>Hola {{showuser()}}</p>
       }
-      
-      @if(!authenticateUser()){
-        <a routerLink="/login" routerLinkActive="active" (click)="clearError()">Login</a>
-        <a routerLink="/register" routerLinkActive="active" (click)="clearError()">Register</a>
+      @else{
+        <p>Murdock Games</p>
       }
+    </div>
+    <div class="header-routes">
+      <div>
+        @if(authenticateUser()){
+          <a routerLink="/home">Home</a>
+          <a routerLink="/who-i-am"routerLinkActive="active">Who I Am</a>
+        }
+        @else{
+            <a routerLink="/login" routerLinkActive="active" (click)="clearError()">Login</a>
+            <a routerLink="/register" routerLinkActive="active" (click)="clearError()">Register</a>
+        }
+      </div>
     </div>
   </div>
   <div>
     @if(showLogOutButton()){
       <button class="form-button form-button-logout" (click)="logOut()">Cerrar Sesion</button>
     }
+    @else{
+        <p>Murdock Games</p>
+      }
   </div>
 </nav>
