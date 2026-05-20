@@ -1,0 +1,54 @@
+<div class="game-container">
+  <!-- Marcador y Datos del Jugador -->
+  <header class="scoreboard">
+    <div class="player-info">
+      <span>Jugador: <strong class="highlight">Fran</strong></span>
+    </div>
+    <div class="score">
+      <span>Aciertos: <strong class="score-count">{{ aciertos }}</strong></span>
+    </div>
+  </header>
+
+  <!-- Cuerpo Principal del Juego -->
+  <main class="game-board">
+    @if (!juegoTerminado) {
+      <!-- Contenedor de la Carta (El esqueleto que pediste) -->
+      <div class="card-area">
+        <div class="playing-card-placeholder">
+          <!-- Este contenido es temporal, después lo manejás dinámicamente -->
+          <div class="card-content">
+            <span class="card-value">7</span>
+            <span class="card-suit">♠</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botones de Acción (Mayor / Menor) -->
+      <section class="controls">
+        <button class="btn btn-greater" (click)="adivinar('mayor')">
+          <span class="icon">▲</span> Mayor
+        </button>
+        <button class="btn btn-lesser" (click)="adivinar('menor')">
+          <span class="icon">▼</span> Menor
+        </button>
+      </section>
+
+      <!-- Botón Auxiliar para Plantarse -->
+      <footer class="game-footer">
+        <button class="btn btn-secondary" (click)="plantarse()">
+          Plantarse y Guardar
+        </button>
+      </footer>
+
+    } @else {
+      <!-- Pantalla de Fin de Juego -->
+      <div class="game-over-screen">
+        <h2>¡Juego Terminado!</h2>
+        <p>Lograste meter un total de <strong>{{ aciertos }}</strong> aciertos.</p>
+        <button class="btn btn-primary" (click)="reiniciarJuego()">
+          Intentar de Nuevo
+        </button>
+      </div>
+    }
+  </main>
+</div>

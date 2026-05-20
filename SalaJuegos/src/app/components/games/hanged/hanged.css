@@ -1,0 +1,61 @@
+.for{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.button-letter-sript{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    background: #6e6c6c;
+}
+
+/* BOTONES GENERALES */
+.button-letter{
+    width: 55px;
+    height: 55px;
+
+    border-radius: 16px;
+    border: none;
+
+    background: linear-gradient(145deg, #ffb347, #ff9800);
+
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+    box-shadow:
+        0 4px 10px rgba(0,0,0,0.25),
+        inset 0 1px 1px rgba(255,255,255,0.3);
+}
+
+/* HOVER 1 -> ELEVAR */
+.button-letter:hover{
+    transform: translateY(-4px) scale(1.05);
+
+    background: linear-gradient(145deg, #ffc76b, #ffae00);
+
+    box-shadow:
+        0 8px 18px rgba(255, 166, 0, 0.45),
+        inset 0 1px 1px rgba(255,255,255,0.4);
+}
+
+/* CLICK */
+.button-letter:active{
+    transform: scale(0.95);
+}

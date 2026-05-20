@@ -1,0 +1,175 @@
+/* Contenedor Principal (Consola de juego) */
+.game-container {
+  max-width: 450px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #1e1e24;
+  color: #f5f5f7;
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Header / Scoreboard */
+.scoreboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.2rem;
+  border-bottom: 2px solid #2e2e38;
+  font-size: 1.1rem;
+}
+
+.highlight {
+  color: #4dabf7;
+}
+
+.score-count {
+  color: #2b8a3e;
+  font-size: 1.4rem;
+  background-color: #ebfbee;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+}
+
+/* Zona del Tablero */
+.game-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Contenedor e interfaz de la Carta */
+.card-area {
+  perspective: 1000px;
+}
+
+.playing-card-placeholder {
+  width: 160px;
+  height: 240px;
+  background-color: #ffffff;
+  color: #121214;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  border: 3px solid #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.playing-card-placeholder:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(77, 171, 247, 0.3);
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: bold;
+  user-select: none;
+}
+
+.card-suit {
+  font-size: 4rem;
+  line-height: 1;
+  margin-top: 0.5rem;
+}
+
+/* Sección de Botones */
+.controls {
+  display: flex;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+/* Estilo Base de Botones */
+.btn {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* Botón Mayor (Verde) */
+.btn-greater {
+  background-color: #2b8a3e;
+  color: white;
+}
+
+.btn-greater:hover {
+  background-color: #237032;
+  box-shadow: 0 0 12px rgba(43, 138, 62, 0.4);
+}
+
+/* Botón Menor (Rojo) */
+.btn-lesser {
+  background-color: #c92a2a;
+  color: white;
+}
+
+.btn-lesser:hover {
+  background-color: #a61e1e;
+  box-shadow: 0 0 12px rgba(201, 42, 42, 0.4);
+}
+
+/* Botón Secundario (Plantarse) */
+.btn-secondary {
+  background-color: #373a40;
+  color: #dcdcdc;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+}
+
+.btn-secondary:hover {
+  background-color: #4a4e57;
+  color: #ffffff;
+}
+
+/* Botón Reintentar (Azul) */
+.btn-primary {
+  background-color: #1c7ed6;
+  color: white;
+  padding: 0.8rem 2rem;
+}
+
+.btn-primary:hover {
+  background-color: #1971c2;
+}
+
+/* Pantalla de Fin de Juego */
+.game-over-screen {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+}
+
+.game-over-screen h2 {
+  color: #fcc419;
+  font-size: 2.2rem;
+  margin: 0;
+}
+
+.game-over-screen p {
+  font-size: 1.1rem;
+  color: #ced4da;
+}

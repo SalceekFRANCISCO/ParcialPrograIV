@@ -1,0 +1,40 @@
+<br>
+<br>
+<br>
+<!-- <button (click)="showSpaces()">showSpaces</button> -->
+<br>
+<br>
+
+<span>{{lives}}</span>
+
+@if (lives <= 0) {
+    <h5>PERDISTE!</h5>
+}
+
+
+<!-- @if (lifes && arrayWord. == secretWord) {
+    <h5>GANASTE!</h5>
+} -->
+
+
+<div class="for">
+    @for(sript of secretWordArray; track $index){
+        <button class="button-letter-sript">{{sript}}</button>
+    }
+</div>
+<br>
+<br>
+<br>
+<div class="for">
+    @for(letter of ArrayLetter; track $index){
+        <button class="button-letter" (click)="sendValue(letter.valueOf())">{{letter}}</button>
+    }
+</div>
+
+
+<!-- @for(msg of chatService.mensajes(); track msg.id)
+        {
+            <div class="message-item">
+                <span class="user-tag">{{msg.usuarios.username}}</span>
+                <span class="user-tag">{{msg.usuarios.contenido}}</span>
+            </div> -->
