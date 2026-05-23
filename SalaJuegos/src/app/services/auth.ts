@@ -30,7 +30,7 @@ export class AuthService {
               id: session.user.id,
               email: session.user.email ?? ''
           })
-      }
+      }//implementar algo mas... que devuelva algo
     }
 
     async login(email: string, password: string): Promise<boolean> {
@@ -54,10 +54,18 @@ export class AuthService {
   }
 
     async logout(){
+      console.log('usuario:'+ this.user);
+      console.log('usuario actual:'+ this.currentUser);
+      console.log('mensaje'+ this.errorMessage);
+      
       await this.supabase.getClient().auth.signOut();
       this.user.set(null);
       this.currentUser.set(null);
       this.errorMessage.set(null);
+      
+      console.log('usuario:'+ this.user);
+      console.log('usuario actual:'+ this.currentUser);
+      console.log('mensaje'+ this.errorMessage);
       this.router.navigate(['/login']);
     }
 

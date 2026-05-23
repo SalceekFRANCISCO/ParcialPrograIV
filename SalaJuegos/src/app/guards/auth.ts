@@ -18,10 +18,13 @@ export const guestGuard: CanActivateFn = () => {
     const auth = inject(AuthService);
     const router = inject(Router);
         
-    if(auth.isAuthenticated()){ //usuario quiere ir a loguin, pero ya esta autenticado
+    if(auth.isAuthenticated()){ //usuario quiere ir a login, pero ya esta autenticado
+        // auth.logout();
         router.navigate(['/home']); //mandalo a home
+        // console.log('estoy autenticado');
         return false; // no permitas que entre a login (false) si ya esta autenticado
     }else{
-        return true;
+        // console.log('no estoy autenticado');
+        return true; //permite que vayas a login
     }
 }
