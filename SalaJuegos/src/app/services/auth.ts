@@ -24,26 +24,30 @@ export class AuthService {
     }
 
 
-    // async verifyAuthenticated(): Promise<boolean>{
-    //   const puto = await this.checkSession();
+    async verifyAuthenticated(): Promise<boolean>{
+      const {data: {session}} = await this.supabase.getClient().auth.getSession();
 
-    //   if(puto){
-    //     return true;
-        
-    //   }
-    //   return false;
-      
+      if(session){
+        return true;
+      }
+      return false;
 
-    // }
+    }
 
     async checkSession(){
-      const {data: {session}} = await this.supabase.getClient().auth.getSession();
+      const {data: {session}, error} = await this.supabase.getClient().auth.getSession();
       if (session?.user){
           this.user.set({
             id: session.user.id,
             email: session.user.email ?? ''
           });
       }
+
+      if(error){
+        console.log('Error al manejar la autenticación: '+error.message);
+        
+      }
+
     }
 
     async login(email: string, password: string): Promise<boolean> {

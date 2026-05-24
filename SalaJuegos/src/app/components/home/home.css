@@ -67,3 +67,27 @@
 .game-text{
     text-transform: capitalize;
 }
+
+
+.home-link {
+    /* border: 1px solid #8b5cf6; */
+    border: 1px solid rgb(30, 116, 30);
+    margin-top: auto;
+    border-radius: 6px;
+    /* width: 90px; */
+    width: 80%;
+    height: 40px;
+    text-align: center;
+    padding: 5px;
+    /* background: rgb(69, 6, 129); */
+    background: rgb(7, 106, 7);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+    color: white;
+}
+
+.home-link:hover{
+    cursor: pointer;
+    /* background: blueviolet; */
+    background: rgb(5, 154, 5);
+
+}

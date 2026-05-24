@@ -15,19 +15,19 @@ export const routes: Routes = [
   {path: 'login', component: Login, canActivate: [guestGuard]},
   {path: 'register', component: Register, canActivate: [guestGuard]},
   {path: 'who-i-am', component: WhoIAm, canActivate: [authGuard]},
-  {path: 'hanged', component: Hanged}, 
   {path: 'chat', component: Chat}, 
-  {path: 'greater-or-lesser', component: GreaterOrLesser},
-  {path: '**', component: Login},
   {path: 'games', component: Games, 
-  children: [
-    {path: 'hanged', 
-    component: Hanged},
-
-    {path: 'greater-or-lesser', 
-    component: GreaterOrLesser}, 
-  ]
+    children: [
+      {path: 'hanged', 
+        component: Hanged,
+      },
+      
+      {path: 'greater-or-lesser', 
+        component: GreaterOrLesser,
+      }, 
+    ]
   },
+  {path: '**', component: Login},
 
   
 
