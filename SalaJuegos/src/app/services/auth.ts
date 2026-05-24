@@ -71,18 +71,10 @@ export class AuthService {
   }
 
     async logout(){
-      console.log('usuario:'+ this.user);
-      console.log('usuario actual:'+ this.currentUser);
-      console.log('mensaje'+ this.errorMessage);
-      
       await this.supabase.getClient().auth.signOut();
       this.user.set(null);
       this.currentUser.set(null);
       this.errorMessage.set(null);
-      
-      console.log('usuario:'+ this.user);
-      console.log('usuario actual:'+ this.currentUser);
-      console.log('mensaje'+ this.errorMessage);
       this.router.navigate(['/login']);
     }
 

@@ -1,14 +1,17 @@
 import { Component, inject, signal } from '@angular/core';
 import { HangedServices } from '../../../services/hanged';
+import { RouterLink } from "@angular/router";
+import { AuthService } from '../../../services/auth';
 
 @Component({
   selector: 'app-hanged',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './hanged.html',
   styleUrl: './hanged.css',
 })
 export class Hanged {
-  // private hanged = inject(HangedServices);
+  private hanged = inject(HangedServices);
+  private auth = inject(AuthService);
 
   lives: number = 6;
   secretWord = 'ANGULAR';
@@ -111,6 +114,16 @@ export class Hanged {
     
     // this.hanged.sendData()
     // enviar datos a database...
+    const id = 0;
+    const email = '';
+    const time = 0; 
+    const user = this.auth.currentUser()
+    user?.id
+    user?.email
+    if(user?.email){
+      this.hanged.sendData(id, user?.email, this.secretWord,this.gameOver,this.lives,this.usedLetters.size,time);
+    }
+
 
 
   }

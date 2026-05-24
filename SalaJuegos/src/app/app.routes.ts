@@ -11,9 +11,9 @@ import { Games } from './components/games/games';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
-  {path: 'home', component: Home, canActivate: [authGuard]},
   {path: 'login', component: Login, canActivate: [guestGuard]},
   {path: 'register', component: Register, canActivate: [guestGuard]},
+  {path: 'home', component: Home, canActivate: [authGuard]},
   {path: 'who-i-am', component: WhoIAm, canActivate: [authGuard]},
   {path: 'chat', component: Chat}, 
   {path: 'games', component: Games, 
