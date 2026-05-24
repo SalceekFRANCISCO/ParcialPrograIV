@@ -1,0 +1,21 @@
+<aside class="aside-chat">
+    <div class="chat-container">
+        <div class="user-config">
+            <input [(ngModel)]="miNombreUsuario" placeholder="Tu nombre de usuario..." class="user-input" />
+        </div>
+  
+  <div class="messages-list">
+      @for (msg of chat.messages(); track msg.id) {
+          <div class="message-item">
+              <span class="user-tag">{{ msg.users?.name }}:</span>
+              <span class="content">{{ msg.content }}</span>
+            </div>
+        }
+    </div>
+    
+    <!-- <div class="input-area">
+        <input [(ngModel)]="nuevoMensaje" (keyup.enter)="enviar()" placeholder="Escribe un mensaje..." />
+        <button (click)="enviar()" [disabled]="!miNombreUsuario.trim()">Enviar</button>
+    </div> -->
+    </div>
+</aside>

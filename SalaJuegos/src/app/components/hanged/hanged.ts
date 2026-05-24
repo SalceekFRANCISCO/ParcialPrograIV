@@ -17,6 +17,9 @@ export class Hanged {
   arrayWord: string[] = this.secretWord.split(''); 
   usedLetters = new Set<string>();
 
+  arrayDontUse: string[] = [];
+  arrayWordInclude: string[] = [];
+  
   constructor(){
     this.drawSpaces();
   }
@@ -40,9 +43,16 @@ export class Hanged {
 
   sendValue(buttonWord: string){
     // console.log(buttonWord);
+    // const buttonHtml = document.getElementById("id-button") as HTMLButtonElement;
+    // const buttonHtml = document.getElementsByClassName("button-letter");
+
 
     if(this.arrayWord.includes(buttonWord)){ // [A N G U L A R] INCLUYE 'A'?
       // console.log('le acertase');
+      this.arrayWordInclude.push(buttonWord);
+      // buttonHtml.item()
+      // buttonHtml.disabled = true;
+      console.log('se tuvo que desactivar el button');
       
 
       for(let i = 0; i < this.secretWord.length; i++){ //aca estamos buscando si hay mas de una coincidencia
@@ -63,8 +73,11 @@ export class Hanged {
     this.indexArray = [];
     }
     else{
+      // buttonHtml.disabled = true;
       console.log('no le acertaste');
       this.lives--;
+      this.arrayDontUse
+      // buttonHtml?.ariaDisabled;
       
     }
   

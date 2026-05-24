@@ -11,8 +11,9 @@
     <div class="header-routes">
       <div>
         @if(authenticateUser()){
-          <a routerLink="/home">Home</a>
-          <a routerLink="/who-i-am"routerLinkActive="active">Who I Am</a>
+          <a routerLink="/home" routerLinkActive="active">Home</a>
+          <a routerLink="/chat" routerLinkActive="active">Chat</a>
+          <a routerLink="/who-i-am" routerLinkActive="active">Who I Am</a>
         }
         @else{
             <a routerLink="/login" routerLinkActive="active" (click)="clearError()">Login</a>

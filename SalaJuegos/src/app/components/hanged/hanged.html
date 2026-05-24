@@ -27,7 +27,7 @@
 <br>
 <div class="for">
     @for(letter of ArrayLetter; track $index){
-        <button class="button-letter" (click)="sendValue(letter.valueOf())">{{letter}}</button>
+        <button class="button-letter" id="id-button" (click)="sendValue(letter.valueOf())">{{letter}}</button>
     }
 </div>
 

@@ -10,6 +10,13 @@ export interface User {
 
 export type SessionUser = Pick<User, 'id' | 'email'>
 
+export type UserChat = Pick<User, 'id' | 'name'>
 
-
+export interface Mensaje {
+    id: number,
+    user_id: number,
+    content: string,
+    users? : UserChat,
+    created_at: string
+}
 
