@@ -1,7 +1,8 @@
-import { Injectable, signal, WritableSignal } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { Mensaje } from '../models/user.model';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { isPlatformBrowser } from '@angular/common';
 
 
 @Injectable({
@@ -9,7 +10,8 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 })
 export class ChatService{
   private supabase: SupabaseClient = createClient(environment.supabaseUrl, environment.supabaseKey);
-  
+  private platformId = inject(PLATFORM_ID);
+
   public messages: WritableSignal<Mensaje[]> = signal([]);
 
 
@@ -19,45 +21,76 @@ export class ChatService{
   }
 
   async loadMessages(){
-    const {data} = await this.supabase.from('mensajes').select('*, usuarios(user)').order('created_at', {ascending: true});
+    const {data} = await this.supabase.from('mensajes').select('*, users(user_name)').order('created_at', {ascending: true});
 
+    // console.log(data);
+    
     if(data){
       this.messages.set(data as Mensaje[]);
+      
+      this.messages().forEach(element => {
+        console.log(element);
+                  
+      });
+      
     }
 
   }
 
   listenMessage(){
-    this.supabase.channel('sala-de-chat').on('postgres_changes',{event: 'INSERT', schema: 'public', table: 'mensajes'},(payload) => {
-      this.loadMessages()
-    }).subscribe()
+    if(isPlatformBrowser(this.platformId)){
+      this.supabase
+      .channel('sala-de-chat')
+      .on('postgres_changes', {event: 'INSERT', schema: 'public', table: 'mensajes'}
+      , async (payload) => {
+        this.loadMessages()
+      })
+      .subscribe()
+    }
   }
+ 
 
-
-  async sendMessage(content: string, userName: string){
+  async sendMessage(content: string, user_name: string){
     const {data: usuarios} = await this.supabase
-    .from('usuarios')
+    .from('users')
     .select('id')
-    .eq('username', userName);
+    .eq('user_name', user_name);
 
-
-    let user_id: number;
+    let userId: number;
 
     if(!usuarios || usuarios.length === 0){
-      const {data: nuevoUsuario, error} = await this.supabase.from('usuarios')
-      .insert({userName})
+      const {data: nuevoUsuario, error} = await this.supabase
+      .from('users')
+      .insert({ user_name })
       .select()
       .single();
 
       if(error){
-        console.error('error al cargar usuario',error);
-        
+        console.error('error al cargar usuario:',error);
+        return;
       }
-      user_id = nuevoUsuario.id;
+      userId = nuevoUsuario.id;
     }
     else{
-      user_id = usuarios[0].id;
+      userId = usuarios[0].id;
     }
-    await this.supabase.from('mensajes').insert({content, user_id})
+
+    
+    // console.log(content);
+
+    await this.supabase.from('mensajes').insert({
+      content: content,
+      user_id: userId
+    })
+
+
   }
+
+
+
+
+
+
+
+
 }
