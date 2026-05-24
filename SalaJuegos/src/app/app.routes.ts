@@ -5,7 +5,7 @@ import { Register } from './components/register/register';
 import { WhoIAm } from './components/who-i-am/who-i-am';
 import { guestGuard, authGuard } from './guards/auth';
 import { Hanged } from './components/hanged/hanged';
-import { GreaterOrLesser } from './components/games/greater-or-lesser/greater-or-lesser';
+import { GreaterOrLesser } from './components/greater-or-lesser/greater-or-lesser';
 import { Chat } from './components/chat/chat';
 
 export const routes: Routes = [

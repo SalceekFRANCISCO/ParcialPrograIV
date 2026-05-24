@@ -1,28 +1,178 @@
-.for{
+.hangman-container{
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(6px);
+    box-shadow:0 10px 35px rgba(0,0,0,0.35);
+    margin-top: 63px;
+}
+
+/* TOP BAR */
+
+.top-bar{
+
     display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+
+    margin-bottom: 35px;
+}
+
+.clock-box,
+.lives-box{
+
+    padding: 12px 18px;
+
+    border-radius: 14px;
+
+    background: rgba(255,255,255,0.08);
+
+    font-weight: bold;
+
+    letter-spacing: 0.5px;
+
+    box-shadow:
+        0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* MENSAJES */
+
+.status{
+
+    text-align: center;
+
+    padding: 20px;
+
+    margin-bottom: 25px;
+
+    border-radius: 18px;
+
+    animation: fadeIn 0.3s ease;
+}
+
+.status h2{
+
+    margin-bottom: 10px;
+}
+
+.win{
+
+    background: rgba(34,197,94,0.15);
+
+    border: 1px solid rgba(34,197,94,0.35);
+
+    color: #86efac;
+}
+
+.lose{
+
+    background: rgba(239,68,68,0.15);
+
+    border: 1px solid rgba(239,68,68,0.35);
+
+    color: #fca5a5;
+}
+
+/* RESET */
+
+.reset-container{
+
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 40px;
+}
+
+.reset-button{
+
+    border: none;
+
+    padding: 12px 28px;
+
+    border-radius: 12px;
+
+    background: #4338ca;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.25);
+}
+
+.reset-button:hover{
+
+    background: #5b4cf0;
+
+    transform: translateY(-2px);
+}
+
+/* PALABRA */
+
+.word-container{
+
+    display: flex;
+
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+
     gap: 14px;
-    width: 100%;
-    margin-top: 20px;
-    margin-bottom: 15px;
+
+    margin-bottom: 50px;
 }
+
+/* LETRAS DE PALABRA */
 
 .button-letter-sript{
-    padding: 10px 20px;
+
+    width: 60px;
+    height: 60px;
+
     border: none;
-    border-radius: 12px;
+
+    border-radius: 16px;
+
+    background: rgba(255,255,255,0.08);
+
     color: white;
-    font-size: 1rem;
+
+    font-size: 1.4rem;
     font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-    background: #6e6c6c;
+
+    box-shadow:
+        0 4px 10px rgba(0,0,0,0.25);
 }
 
-/* BOTONES GENERALES */
+/* TECLADO */
+
+.for{
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 14px;
+}
+
+/* TUS BOTONES NARANJAS */
+
 .button-letter{
+
     width: 55px;
     height: 55px;
 
@@ -32,6 +182,7 @@
     background: linear-gradient(145deg, #ffb347, #ff9800);
 
     color: white;
+
     font-size: 1.1rem;
     font-weight: bold;
 
@@ -44,8 +195,8 @@
         inset 0 1px 1px rgba(255,255,255,0.3);
 }
 
-/* HOVER 1 -> ELEVAR */
 .button-letter:hover{
+
     transform: translateY(-4px) scale(1.05);
 
     background: linear-gradient(145deg, #ffc76b, #ffae00);
@@ -55,14 +206,35 @@
         inset 0 1px 1px rgba(255,255,255,0.4);
 }
 
-/* CLICK */
 .button-letter:active{
+
     transform: scale(0.95);
 }
 
 .button-letter:disabled{
-    background: #6e6c6c;
+
+    background: #6b7280;
+
     cursor: not-allowed;
+
     box-shadow: none;
+
     transform: none;
+
+    opacity: 0.7;
+}
+
+/* ANIMACION */
+
+@keyframes fadeIn{
+
+    from{
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

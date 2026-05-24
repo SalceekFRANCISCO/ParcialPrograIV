@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { HangedServices } from '../../services/hanged';
 
 @Component({
   selector: 'app-hanged',
@@ -7,6 +8,7 @@ import { Component, signal } from '@angular/core';
   styleUrl: './hanged.css',
 })
 export class Hanged {
+  private hanged = inject(HangedServices);
 
   lives: number = 6;
   secretWord = 'ANGULAR';
@@ -19,8 +21,7 @@ export class Hanged {
   
   clock: string = '';
 
-  // arrayWordInclude: string[] = [];
-  gameOver = signal<boolean>(false);
+  gameOver = false;
   
   constructor(){
     this.drawSpaces();
@@ -45,7 +46,6 @@ export class Hanged {
   }
 
 
-
   resetGame(){
 
     this.lives = 6;
@@ -58,13 +58,12 @@ export class Hanged {
 
     this.usedLetters.clear();
 
-    this.gameOver.set(false);
+    this.gameOver = (false);
     
     this.clock = '';
 
     this.drawSpaces();
 }
-
 
   sendValue(buttonWord: string){
     
@@ -89,7 +88,6 @@ export class Hanged {
 
   }
 
-
   checkLetter(buttonWord: string): boolean {
 
     if(this.usedLetters.has(buttonWord)){
@@ -100,17 +98,19 @@ export class Hanged {
     return true;
   }
 
-
   checkVictory(){
     if(!this.secretWordArray.includes('_')){
       console.log('GANASTE');
-      this.gameOver.set(true);
+      this.gameOver = true;
     }
     
     if(this.lives <= 0){
       console.log('PERDISTE');
-      this.gameOver.set(false);
+      this.gameOver = true;
     }
+    
+    // this.hanged.sendData()
+    // enviar datos a database...
 
 
   }

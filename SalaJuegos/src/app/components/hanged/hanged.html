@@ -1,51 +1,46 @@
-<br>
-<br>
-<br>
-<!-- <button (click)="showSpaces()">showSpaces</button> -->
-<br>
-<br>
+<div class="hangman-container">
+    <div class="top-bar">
+        <div class="clock-box">
+            {{clock}}
+        </div>
+        <div class="lives-box">
+            {{lives}} vidas
+        </div>
+    </div>
 
-<span>{{clock}}</span>
-<br>
-<span>Vidas: {{lives}}</span>
-
-@if (lives <= 0) {
-    <h5>PERDISTE!</h5>
-    <h5>La palabra secreta era: {{secretWord}}</h5>
-}
-
-@if (!secretWordArray.includes('_')) {
-    <h5>GANASTE!</h5>
-}
-
-<br>
-<button (click)="resetGame()">
-  Reiniciar
-</button>
-
-<!-- @if (lifes && arrayWord. == secretWord) {
-    <h5>GANASTE!</h5>
-} -->
-
-
-<div class="for">
-    @for(sript of secretWordArray; track $index){
-        <button class="button-letter-sript">{{sript}}</button>
+    @if (lives <= 0) {
+        <div class="status lose">
+            <h2>PERDISTE</h2>
+            <p>La palabra era:</p>
+            <strong>{{secretWord}}</strong>
+        </div>
     }
-</div>
-<br>
-<br>
-<br>
-<div class="for">
-    @for(letter of ArrayLetter; track $index){
-        <button class="button-letter" [disabled]="usedLetters.has(letter)" (click)="sendValue(letter.valueOf())">{{letter}}</button>
+    @if (!secretWordArray.includes('_')) {
+        <div class="status win">
+            <h2>GANASTE</h2>
+        </div>
     }
+    <div class="reset-container">
+        <button class="reset-button" (click)="resetGame()">
+            Reiniciar
+        </button>
+    </div>
+    <div class="word-container">
+        @for(sript of secretWordArray; track $index){
+            <button class="button-letter-sript">
+                {{sript}}
+            </button>
+        }
+    </div>
+    <div class="for">
+        @for(letter of ArrayLetter; track $index){
+            <button
+                class="button-letter"
+                [disabled]="usedLetters.has(letter) || gameOver"
+                (click)="sendValue(letter.valueOf())"
+            >
+                {{letter}}
+            </button>
+        }
+    </div>
 </div>
-
-
-<!-- @for(msg of chatService.mensajes(); track msg.id)
-        {
-            <div class="message-item">
-                <span class="user-tag">{{msg.usuarios.username}}</span>
-                <span class="user-tag">{{msg.usuarios.contenido}}</span>
-            </div> -->
