@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-hanged',
@@ -16,15 +16,28 @@ export class Hanged {
 
   arrayWord: string[] = this.secretWord.split(''); 
   usedLetters = new Set<string>();
+  
+  clock: string = '';
 
-  arrayDontUse: string[] = [];
-  arrayWordInclude: string[] = [];
+  // arrayWordInclude: string[] = [];
+  gameOver = signal<boolean>(false);
   
   constructor(){
     this.drawSpaces();
+
+    setInterval(() => {
+      
+      const date: Date = new Date();
+      
+      this.clock = date.toLocaleTimeString('es-AR',{
+        minute: '2-digit',
+        second: '2-digit'
+      });
+  
+    }, 1000);
   }
 
-  drawSpaces(){
+  private drawSpaces(){
     for(let i: number = 0; i < this.secretWord.length; i++){
       this.secretWordArray.push('_');
     }
@@ -32,53 +45,45 @@ export class Hanged {
   }
 
 
-  // showSpaces(): void{
-  //   this.secretWordArray.forEach((value, index) => {
-  //     console.log(index);
-  //     console.log(value);
-      
-  //   });
-  // }
+
+  resetGame(){
+
+    this.lives = 6;
+
+    this.secretWord = 'ANGULAR';
+
+    this.secretWordArray = [];
+
+    this.indexArray = [];
+
+    this.usedLetters.clear();
+
+    this.gameOver.set(false);
+    
+    this.clock = '';
+
+    this.drawSpaces();
+}
 
 
   sendValue(buttonWord: string){
-    // console.log(buttonWord);
-    // const buttonHtml = document.getElementById("id-button") as HTMLButtonElement;
-    // const buttonHtml = document.getElementsByClassName("button-letter");
+    
+    if(this.usedLetters.has(buttonWord)){
+      return;
+    }
 
+    this.usedLetters.add(buttonWord);
 
     if(this.arrayWord.includes(buttonWord)){ // [A N G U L A R] INCLUYE 'A'?
-      // console.log('le acertase');
-      this.arrayWordInclude.push(buttonWord);
-      // buttonHtml.item()
-      // buttonHtml.disabled = true;
-      console.log('se tuvo que desactivar el button');
-      
 
-      for(let i = 0; i < this.secretWord.length; i++){ //aca estamos buscando si hay mas de una coincidencia
-        if(this.arrayWord[i] === buttonWord){
-          this.indexArray.push(i) // guardamos 2 valores, porque A aparece 2 veces
-        }
-      }
+      this.findArrayWord(buttonWord);
 
-      // console.log(this.indexArray); // indexArray = [0, 5]
-      
-      for(let i=0; i < this.secretWordArray.length; i++){
-        for(let j=0; j < this.indexArray.length; j++){
-          if (i === this.indexArray[j]){
-          this.secretWordArray[i] = buttonWord;
-          }
-      }
-    }
-    this.indexArray = [];
+      this.checkVictory();
     }
     else{
-      // buttonHtml.disabled = true;
-      console.log('no le acertaste');
       this.lives--;
-      this.arrayDontUse
-      // buttonHtml?.ariaDisabled;
-      
+      this.checkVictory();
+    
     }
   
 
@@ -99,14 +104,38 @@ export class Hanged {
   checkVictory(){
     if(!this.secretWordArray.includes('_')){
       console.log('GANASTE');
+      this.gameOver.set(true);
     }
-
+    
     if(this.lives <= 0){
       console.log('PERDISTE');
+      this.gameOver.set(false);
     }
 
 
   }
 
+  findArrayWord(buttonWord: string){
+    if(this.arrayWord.includes(buttonWord)){ // [A N G U L A R] INCLUYE 'A'?
+
+      for(let i = 0; i < this.secretWord.length; i++){ //aca estamos buscando si hay mas de una coincidencia
+        if(this.arrayWord[i] === buttonWord){
+          this.indexArray.push(i) // guardamos 2 valores, porque A aparece 2 veces
+        }
+      }
+
+      // console.log(this.indexArray); // indexArray = [0, 5]
+        
+        for(let i=0; i < this.secretWordArray.length; i++){ //recorremos el largo del arraysecreto
+          for(let j=0; j < this.indexArray.length; j++){ // recorremos el largo del array de indices
+            if (i === this.indexArray[j]){ // preguntamos si la posicion "i" es igual a algun elemento del indexArray. ej: 0 === 0 [0,5] 
+            this.secretWordArray[i] = buttonWord; // al array secreto en posicion de i, le metemos la palabra, ej: en secretWord[0] reemplazamos y ponemos la letra 'A'
+            }
+        }
+      }
+      this.indexArray = [];
+    }
+
+  }
 
 }
