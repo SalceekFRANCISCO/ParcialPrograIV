@@ -15,10 +15,10 @@ export const routes: Routes = [
   {path: 'login', component: Login, canActivate: [guestGuard]},
   {path: 'register', component: Register, canActivate: [guestGuard]},
   {path: 'who-i-am', component: WhoIAm, canActivate: [authGuard]},
-  // {path: '**', component: Login},
   {path: 'hanged', component: Hanged}, 
   {path: 'chat', component: Chat}, 
-  // {path: 'greater-or-lesser', component: GreaterOrLesser},
+  {path: 'greater-or-lesser', component: GreaterOrLesser},
+  // {path: '**', component: Login},
   
 
 ];

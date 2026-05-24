@@ -8,7 +8,7 @@ import { HangedServices } from '../../services/hanged';
   styleUrl: './hanged.css',
 })
 export class Hanged {
-  private hanged = inject(HangedServices);
+  // private hanged = inject(HangedServices);
 
   lives: number = 6;
   secretWord = 'ANGULAR';
