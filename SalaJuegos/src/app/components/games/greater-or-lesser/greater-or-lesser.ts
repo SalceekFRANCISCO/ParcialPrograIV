@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { greaterOrLesserService } from '../../../services/greater-or-lesser';
 import { GreaterOrLesserInterface } from '../../../models/greater-or-lesser.model';
+import { RouterLink } from '@angular/router';
 
 interface Card {
   value: number;
@@ -10,7 +11,7 @@ interface Card {
 @Component({
   selector: 'app-greater-or-lesser',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './greater-or-lesser.html',
   styleUrl: './greater-or-lesser.css',
 })
