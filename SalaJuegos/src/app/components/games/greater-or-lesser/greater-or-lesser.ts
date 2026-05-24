@@ -1,45 +1,123 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { greaterOrLesserService } from '../../../services/greater-or-lesser';
+import { GreaterOrLesserInterface } from '../../../models/greater-or-lesser.model';
+
+interface Card {
+  value: number;
+  suit: string;
+}
 
 @Component({
   selector: 'app-greater-or-lesser',
-  standalone: true, // Si estás usando las versiones nuevas de Angular
+  standalone: true,
   imports: [],
   templateUrl: './greater-or-lesser.html',
   styleUrl: './greater-or-lesser.css',
 })
-export class GreaterOrLesser{
-  // 1. Declaramos las variables (Propiedades) que usa el HTML
-  aciertos: number = 0;
-  juegoTerminado: boolean = false;
+export class GreaterOrLesser implements OnInit {
 
-  // Acá podés ir pensando cómo vas a guardar la carta actual, por ahora la dejamos simulada
-  cartaActual: number = 7; 
+  hits: number = 0;
 
-  constructor() {
-    // Acá podrías inicializar el juego o mezclar el mazo más adelante
+  gameFinished: boolean = false;
+
+  currentCard!: Card;
+
+  suits: string[] = ['♠', '♥', '♦', '♣'];
+
+  constructor(
+    private greaterOrLesserService: greaterOrLesserService
+  ) {}
+
+  ngOnInit(): void {
+    this.startGame();
   }
 
-  // 2. Creamos los métodos (Funciones) que disparan los botones
-  adivinar(opcion: 'mayor' | 'menor'): void {
-    console.log('El usuario arriesgó que la siguiente carta es:', opcion);
-    
-    // TODO: Acá va la lógica para sacar la próxima carta y comparar si ganó o perdió.
-    // Ejemplo rápido para probar:
-    // this.aciertos++; 
+  startGame(): void {
+
+    this.hits = 0;
+
+    this.gameFinished = false;
+
+    this.currentCard = this.generateCard();
   }
 
-  plantarse(): void {
-    console.log('El usuario se plantó. Guardando en la base de datos...');
-    this.juegoTerminado = true;
-    
-    // TODO: Acá vas a llamar al servicio para mandar los datos al backend
+  generateCard(): Card {
+
+    const randomNumber = Math.floor(Math.random() * 13) + 1;
+
+    const randomSuit = this.suits[
+      Math.floor(Math.random() * this.suits.length)
+    ];
+
+    return {
+      value: randomNumber,
+      suit: randomSuit
+    };
   }
 
-  reiniciarJuego(): void {
-    console.log('Reiniciando la partida...');
-    this.aciertos = 0;
-    this.juegoTerminado = false;
-    
-    // TODO: Volver a mezclar el mazo y sacar la primera carta
+  guess(option: 'higher' | 'lower'): void {
+
+    if (this.gameFinished) return;
+
+    const previousCard = this.currentCard;
+
+    const newCard = this.generateCard();
+
+    console.log('Previous card:', previousCard.value);
+
+    console.log('New card:', newCard.value);
+
+    let correctGuess: boolean = false;
+
+    if (option === 'higher') {
+
+      correctGuess = newCard.value > previousCard.value;
+    }
+
+    if (option === 'lower') {
+
+      correctGuess = newCard.value < previousCard.value;
+    }
+
+    this.currentCard = newCard;
+
+    if (correctGuess) {
+
+      this.hits++;
+
+      console.log('Correct');
+
+    } else {
+
+      console.log('Game Over');
+
+      this.gameFinished = true;
+
+      this.saveGame();
+    }
+  }
+
+  stand(): void {
+
+    this.gameFinished = true;
+
+    this.saveGame();
+  }
+
+  restartGame(): void {
+
+    this.startGame();
+  }
+
+  async saveGame(): Promise<void> {
+
+    const game: GreaterOrLesserInterface = {
+
+      user_email: 'Fran',
+
+      streak: this.hits
+    };
+
+    await this.greaterOrLesserService.saveGame(game);
   }
 }

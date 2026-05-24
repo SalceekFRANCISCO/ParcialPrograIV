@@ -1,54 +1,103 @@
 <div class="game-container">
-  <!-- Marcador y Datos del Jugador -->
+
+  <!-- Scoreboard -->
   <header class="scoreboard">
+
     <div class="player-info">
-      <span>Jugador: <strong class="highlight">Fran</strong></span>
+      <span>Player: <strong class="highlight">Fran</strong></span>
     </div>
+
     <div class="score">
-      <span>Aciertos: <strong class="score-count">{{ aciertos }}</strong></span>
+      <span>Hits: <strong class="score-count">{{ hits }}</strong></span>
     </div>
+
   </header>
 
-  <!-- Cuerpo Principal del Juego -->
+  <!-- Main Game -->
   <main class="game-board">
-    @if (!juegoTerminado) {
-      <!-- Contenedor de la Carta (El esqueleto que pediste) -->
+
+    @if (!gameFinished) {
+
+      <!-- Card -->
       <div class="card-area">
+
         <div class="playing-card-placeholder">
-          <!-- Este contenido es temporal, después lo manejás dinámicamente -->
+
           <div class="card-content">
-            <span class="card-value">7</span>
-            <span class="card-suit">♠</span>
+
+            <span class="card-value">
+              {{ currentCard.value }}
+            </span>
+
+            <span class="card-suit">
+              {{ currentCard.suit }}
+            </span>
+
           </div>
+
         </div>
+
       </div>
 
-      <!-- Botones de Acción (Mayor / Menor) -->
+      <!-- Buttons -->
       <section class="controls">
-        <button class="btn btn-greater" (click)="adivinar('mayor')">
-          <span class="icon">▲</span> Mayor
+
+        <button
+          class="btn btn-greater"
+          (click)="guess('higher')">
+
+          <span class="icon">▲</span>
+
+          Higher
         </button>
-        <button class="btn btn-lesser" (click)="adivinar('menor')">
-          <span class="icon">▼</span> Menor
+
+        <button
+          class="btn btn-lesser"
+          (click)="guess('lower')">
+
+          <span class="icon">▼</span>
+
+          Lower
         </button>
+
       </section>
 
-      <!-- Botón Auxiliar para Plantarse -->
+      <!-- Stand -->
       <footer class="game-footer">
-        <button class="btn btn-secondary" (click)="plantarse()">
-          Plantarse y Guardar
+
+        <button
+          class="btn btn-secondary"
+          (click)="stand()">
+
+          Stand and Save
         </button>
+
       </footer>
 
     } @else {
-      <!-- Pantalla de Fin de Juego -->
+
+      <!-- Game Over -->
       <div class="game-over-screen">
-        <h2>¡Juego Terminado!</h2>
-        <p>Lograste meter un total de <strong>{{ aciertos }}</strong> aciertos.</p>
-        <button class="btn btn-primary" (click)="reiniciarJuego()">
-          Intentar de Nuevo
+
+        <h2>Game Over!</h2>
+
+        <p>
+          You got a total of
+          <strong>{{ hits }}</strong>
+          correct guesses.
+        </p>
+
+        <button
+          class="btn btn-primary"
+          (click)="restartGame()">
+
+          Play Again
         </button>
+
       </div>
+
     }
+
   </main>
+
 </div>
