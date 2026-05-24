@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { HangedServices } from '../../services/hanged';
+import { HangedServices } from '../../../services/hanged';
 
 @Component({
   selector: 'app-hanged',

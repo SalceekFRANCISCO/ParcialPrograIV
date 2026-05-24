@@ -1,6 +1,6 @@
 import { inject, Injectable, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
 import { environment } from '../../environments/environments';
-import { Mensaje } from '../models/user.model';
+import { Mensaje } from '../models/message.model';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { isPlatformBrowser } from '@angular/common';
 

@@ -23,14 +23,27 @@ export class AuthService {
       this.checkSession();
     }
 
+
+    // async verifyAuthenticated(): Promise<boolean>{
+    //   const puto = await this.checkSession();
+
+    //   if(puto){
+    //     return true;
+        
+    //   }
+    //   return false;
+      
+
+    // }
+
     async checkSession(){
       const {data: {session}} = await this.supabase.getClient().auth.getSession();
       if (session?.user){
           this.user.set({
-              id: session.user.id,
-              email: session.user.email ?? ''
-          })
-      }//implementar algo mas... que devuelva algo
+            id: session.user.id,
+            email: session.user.email ?? ''
+          });
+      }
     }
 
     async login(email: string, password: string): Promise<boolean> {
