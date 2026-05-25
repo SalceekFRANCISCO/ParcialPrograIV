@@ -10,6 +10,7 @@ import { Chat } from './components/chat/chat';
 import { Games } from './components/games/games';
 import { Quiz } from './components/games/quiz/quiz';
 import { Viceversa } from './components/games/viceversa/viceversa';
+import { Scores } from './components/scores/scores';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -41,6 +42,7 @@ export const routes: Routes = [
       }, 
     ]
   },
+  {path: 'scores', component: Scores},
   {path: '**', component: Login},
 
   
