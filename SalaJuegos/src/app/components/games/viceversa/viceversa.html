@@ -1,106 +1,57 @@
 <div class="game-container">
-
   <div class="content-button-back">
-
     <a class="button-back" routerLink="/home">
-
       <span class="arrow">←</span>
-
       <span>Volver</span>
-
     </a>
-
   </div>
 
-  <div class="game-board">
+  @if (!gameFinished) {
+    <div class="game-board">
+      <h1 class="title">VICEVERSA</h1>
+      <p class="subtitle">Ronda {{currentRound}} de {{maxRounds}}</p>
 
-    <h1 class="title">
-      VICEVERSA
-    </h1>
+      <div class="section-title">Palabra invertida</div>
+      <div class="prueba">
+        @for(script of reverseWordArray; track $index){
+          <button class="button-letter-sript reverse-word">
+            {{script}}
+          </button>
+        }
+      </div>
 
-    <p class="subtitle">
-      Descubrí la palabra correcta
-    </p>
+      <div class="section-title">Tu respuesta</div>
+      <div class="prueba">
+        @for(script of arrayScript; track $index){
+          <button class="button-letter-sript answer-word">
+            {{script}}
+          </button>
+        }
+      </div>
 
-    <!-- PALABRA INVERTIDA -->
+      <div class="section-title">Letras disponibles</div>
+      <div class="prueba">
+        @for(script of reverseWordLetters; track $index){
+          <button class="button-letter-sript clickable" (click)="verify(script)">
+            {{script}}
+          </button>
+        }
+      </div>
 
-    <div class="section-title">
-      Palabra invertida
-    </div>
-
-    <div class="prueba">
-
-      @for(script of reverseWordArray; track $index){
-
-        <button
-          class="button-letter-sript reverse-word"
-        >
-
-          {{script}}
-
+      <div class="next-round-container">
+        <button class="next-round-button" (click)="nextRound()">
+          {{ currentRound === maxRounds ? 'Ver Resultados' : 'Siguiente palabra' }}
         </button>
-      }
-
+      </div>
     </div>
-
-    <!-- PALABRA DEL USUARIO -->
-
-    <div class="section-title">
-      Tu respuesta
+  } @else {
+    <div class="game-board">
+      <h1 class="title">¡JUEGO TERMINADO!</h1>
+      <p class="subtitle">Adivinaste todas las palabras</p>
+      
+      <div class="results-box">
+        <p>Tu duración fue de: <strong>{{ seconds }} segundos</strong></p>
+      </div>
     </div>
-
-    <div class="prueba">
-
-      @for(script of arrayScript; track $index){
-
-        <button
-          class="button-letter-sript answer-word"
-        >
-
-          {{script}}
-
-        </button>
-      }
-
-    </div>
-
-    <!-- LETRAS DISPONIBLES -->
-
-    <div class="section-title">
-      Letras disponibles
-    </div>
-
-    <div class="prueba">
-
-      @for(script of reverseWordLetters; track $index){
-
-        <button
-          class="button-letter-sript clickable"
-          (click)="verify(script)"
-        >
-
-          {{script}}
-
-        </button>
-      }
-
-    </div>
-
-    <!-- BOTON -->
-
-    <div class="next-round-container">
-
-      <button
-        class="next-round-button"
-        (click)="nextRound()"
-      >
-
-        Siguiente palabra
-
-      </button>
-
-    </div>
-
-  </div>
-
+  }
 </div>
