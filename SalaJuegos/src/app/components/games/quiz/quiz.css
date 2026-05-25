@@ -53,3 +53,93 @@
   transform: translateY(1px);
   box-shadow: 0 0 5px rgba(168, 85, 247, 0.2);
 }
+
+.result-card {
+  background-color: #1e1e24; /* Mismo fondo oscuro de la app */
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  
+  /* Flexbox para asegurar que todo el contenido interno esté perfectamente centrado verticalmente */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem; /* Separación uniforme entre elementos */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #e2e8f0;
+}
+
+/* Título principal */
+.result-card h1 {
+  color: #a855f7; /* Morado brillante neón */
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin: 0;
+  text-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+}
+
+/* Duración y textos secundarios */
+.result-card p {
+  font-size: 1.1rem;
+  color: #94a3b8; /* Gris más suave */
+  margin: 0;
+}
+
+/* Subtítulo de aciertos */
+.result-card h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* Mensaje motivacional/puntuación (Muy bien, Nada mal, pues...) */
+.result-card p:last-of-type {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #34d399; /* Un toque verde esmeralda para el feedback, queda genial con el morado */
+  text-transform: uppercase;
+}
+
+/* ==========================================
+   BOTÓN REINICIAR / EMPEZAR DE NUEVO
+   ========================================== */
+
+/* Contenedor del botón para asegurar el centrado absoluto */
+.result-card div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* El botón en sí (Le agregué una clase imaginaria .btn-restart, pero aplica al botón interno) */
+.result-card button {
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%); /* Degradado morado */
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
+  transition: all 0.3s ease;
+}
+
+/* Efectos para el botón */
+.result-card button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
+  filter: brightness(1.1); /* Lo vuelve ligeramente más brillante */
+}
+
+.result-card button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(168, 85, 247, 0.3);
+}

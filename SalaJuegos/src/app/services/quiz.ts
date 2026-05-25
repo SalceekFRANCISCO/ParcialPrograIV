@@ -1,27 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { SupabaseService } from './supabase';
-
-
-// "type": "multiple",
-  //   "difficulty": "easy",
-  //   "category": "Entertainment: Film",
-  //   "question": "In &quot;ALF&quot;, what was ALF&#039;s real name?",
-  //   "correct_answer": "Gordon Shumway",
-  //   "incorrect_answers": [
-  //     "Gordon Milipp",
-  //     "Gordon Foster",
-  //     "Go
-
-
-interface ApiQuiz {
-    question: string,
-    correct_answer: string,
-    incorrect_answers: string[]
-    category: string,
-    difficulty: string
-
-  }
+import { ApiQuiz } from '../models/apiquiz.model';
 
 @Injectable({
   providedIn: 'root',
@@ -48,12 +28,11 @@ export class QuizService {
       this.questions.set(finalQuestion);
       }
     })
-  }
+    }
 
   getQuestions(){
     return this.questions.asReadonly();
-  }
-
+    }
 
   async sendData(user_email: string, correct_answers: number, duration: number){
 
@@ -72,33 +51,12 @@ export class QuizService {
         }
   });
 
-}
+    }
 
 
 
 
 
 
-
-//   startGame() {
-//     this.loadQuestions();
-//     this.gameState.set('playing');
-//     this.round.set(1);
-//     console.log(this.questions()[this.round()]);
-//     }
-    
-//   playRound(answer: string) {
-//     let isCorrect = this.checkAnswer(this.questions()[this.round()-1], answer);
-
-//     if (isCorrect) {
-//         this.addPoint();
-//       }
-
-//       this.round.update(round => round + 1);
-
-//       if (this.checkEnd()) {
-//         this.endGame();
-//       }
-//   }
 
 }

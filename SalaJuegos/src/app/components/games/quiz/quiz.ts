@@ -1,7 +1,6 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { QuizService } from '../../../services/quiz';
 import { AuthService } from '../../../services/auth';
-import { timeStamp } from 'console';
 
 @Component({
   selector: 'app-quiz',
@@ -9,8 +8,8 @@ import { timeStamp } from 'console';
   templateUrl: './quiz.html',
   styleUrl: './quiz.css',
 })
-export class Quiz implements OnInit {
 
+export class Quiz implements OnInit {
   	private quizService = inject(QuizService);
 	private authService = inject(AuthService);
 
@@ -20,17 +19,17 @@ export class Quiz implements OnInit {
 	timer: any;
 	clock = '0s';	
   
-  questions = this.quizService.getQuestions();
-  round = signal<number>(0);
-  currentQuestion = computed(() =>  this.questions()[this.round()]
-);
+	questions = this.quizService.getQuestions();
+	round = signal<number>(0);
+	currentQuestion = computed(() =>  this.questions()[this.round()]);
 
-  ngOnInit(): void {
+
+  	ngOnInit(): void {
     this.quizService.loadQuestions();
 	this.startTimer();
-  }
+  	}
 
-  startTimer(){
+  	startTimer(){
 	this.timer = setInterval(() => {
 		this.seconds++;
 
@@ -43,13 +42,19 @@ export class Quiz implements OnInit {
 	}, 1000);
   	}
 
-  stopTimer(){
+  	stopTimer(){
   	clearInterval(this.timer);
 	}
 
+	startAgain(){
+		this.correctAnswers = 0;
+		this.round.set(0);
+		this.gameFinished = false;		
+		this.quizService.loadQuestions();
+		this.startTimer();
+	}
 
-
-  verify(value: string, correct_answer: string){
+  	verify(value: string, correct_answer: string){
 
     if(value == correct_answer){
 
@@ -68,16 +73,16 @@ export class Quiz implements OnInit {
     	console.log('Duración:', this.seconds);
 		this.sendData();
     }
-  } 
+  	} 
 
-  async sendData(){
+  	async sendData(){
 
 	const user = this.authService.currentUser();
 
 	if (user?.email){
 		return await this.quizService.sendData(user.email,this.correctAnswers, this.seconds);
 	}
-  }
+	}
 
 
 // ○ Debe obtener los datos de una api.

@@ -56,29 +56,21 @@
 } @else {
 
     <div class="result-card">
-
         <h1>QUIZ TERMINADO</h1>
-
         <p>Duración: {{ clock }}</p>
-
         <h2>
             Acertaste {{ correctAnswers }}
             de {{ questions().length }}
         </h2>
-
         @if(correctAnswers >= 4){
-
             <p>Muy bien!</p>
-
         } @else if(correctAnswers >= 2){
-
             <p>Nada mal</p>
-
         } @else {
-
             <p>pues...</p>
-
         }
-
+        <div>
+            <button (click)="startAgain()">Play Again</button>
+        </div>
     </div>
 }
