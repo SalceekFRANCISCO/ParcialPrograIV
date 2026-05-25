@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { greaterOrLesserService } from '../../../services/greater-or-lesser';
 import { GreaterOrLesserInterface } from '../../../models/greater-or-lesser.model';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../../services/auth';
 
 interface Card {
   value: number;
@@ -17,12 +18,13 @@ interface Card {
 })
 export class GreaterOrLesser implements OnInit {
 
+  private authService = inject(AuthService);
+
+  user = this.authService.currentUser;
+
   hits: number = 0;
-
   gameFinished: boolean = false;
-
   currentCard!: Card;
-
   suits: string[] = ['♠', '♥', '♦', '♣'];
 
   constructor(
@@ -121,4 +123,23 @@ export class GreaterOrLesser implements OnInit {
 
     await this.greaterOrLesserService.saveGame(game);
   }
+
+
+  showuser(): string | undefined {
+    let userName: string | undefined = '';
+
+    if(this.authService.currentUser()){
+      const fullName = this.authService.currentUser()?.email;
+
+      if(fullName){
+        userName = fullName.split('@')[0];
+        return userName;
+      }
+
+    }
+    return userName;
+
+  }
+
+
 }

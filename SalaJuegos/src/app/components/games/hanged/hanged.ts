@@ -15,8 +15,9 @@ export class Hanged {
   private auth = inject(AuthService);
 
   lives: number = 6;
-  secretWord = 'ANGULAR';
-  secretWords = ['ANGULAR', 'TYPESCRIPT', 'REACT', 'POSTGRESQL', 'GITHUB', 'JAVASCRIPT', 'NODEJS', 'MONGODB', 'DOCKER', 'HTML', 'CSS', 'TAILWIND']  
+  // secretWord = 'ANGULAR';
+  secretWord = '';
+  secretWords = ['ANGULAR', 'TYPESCRIPT', 'REACT', 'POSTGRESQL', 'GITHUB', 'JAVASCRIPT', 'NODEJS', 'MONGODB', 'DOCKER', 'HTML', 'CSS', 'TAILWIND','SUPABASE','FIREBASE','PYTHON','JAVA','SPRINGBOOT','EXPRESS', 'MYSQL','DATABASE','FRONTEND', 'BACKEND','FULLSTACK','APIREST', 'PROGRAMMING','DEVELOPER']  
 
   secretWordArray: string[] = [];
   indexArray: number[] = [];
@@ -33,14 +34,16 @@ export class Hanged {
   clock: string = '0s';
   seconds: number = 0;
   interval: any;
+  lastIndex: number = -1;
 
   constructor(){
+
+    this.mixArraySecretWords();
 
     this.drawSpaces();
 
     this.startTimer();
 
-    // this.mixArraySecretWords();
   }
 
   startTimer(){
@@ -85,6 +88,8 @@ export class Hanged {
 
     this.clock = '0s';
 
+    this.mixArraySecretWords();
+
     this.drawSpaces();
 
     this.startTimer();
@@ -115,10 +120,21 @@ export class Hanged {
 
 
   mixArraySecretWords(){
-	const index = Math.floor(Math.random() * this.secretWords.length);
-  	const palabra = this.secretWords[index];
-  	console.log(palabra);
-  	this.secretWord = palabra;
+
+  let index: number;
+
+  do {
+
+	index = Math.floor(
+	Math.random() * this.secretWords.length
+    );
+
+  } while(index === this.lastIndex);
+
+  this.lastIndex = index;
+  this.secretWord = this.secretWords[index];
+  this.arrayWord = this.secretWord.split('');
+  console.log(this.secretWord);
 }
   
 
@@ -142,6 +158,7 @@ export class Hanged {
       console.log('PERDISTE');
       this.gameOver = true;
       clearInterval(this.interval);
+      // this.secretWord = '';
       this.saveGame(false);
     }
   }
@@ -162,19 +179,14 @@ export class Hanged {
     if(this.arrayWord.includes(buttonWord)){
 
       for(let i = 0; i < this.secretWord.length; i++){
-
         if(this.arrayWord[i] === buttonWord){
-
           this.indexArray.push(i);
         }
       }
 
       for(let i = 0; i < this.secretWordArray.length; i++){
-
         for(let j = 0; j < this.indexArray.length; j++){
-
           if(i === this.indexArray[j]){
-
             this.secretWordArray[i] = buttonWord;
           }
         }

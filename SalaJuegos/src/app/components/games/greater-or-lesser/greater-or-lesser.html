@@ -10,9 +10,12 @@
   <!-- Scoreboard -->
   <header class="scoreboard">
 
+  @if(user()){
     <div class="player-info">
-      <span>Player: <strong class="highlight">Fran</strong></span>
-    </div>
+        <span>Player: <strong class="highlight">{{showuser()}}</strong></span>
+        <!-- <span>Player: <strong class="highlight">Fran</strong></span> -->
+      </div>
+  }
 
     <div class="score">
       <span>Hits: <strong class="score-count">{{ hits }}</strong></span>
