@@ -8,6 +8,7 @@ import { Hanged } from './components/games/hanged/hanged';
 import { GreaterOrLesser } from './components/games/greater-or-lesser/greater-or-lesser';
 import { Chat } from './components/chat/chat';
 import { Games } from './components/games/games';
+import { Quiz } from './components/games/quiz/quiz';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -25,6 +26,11 @@ export const routes: Routes = [
       
       {path: 'greater-or-lesser', 
         component: GreaterOrLesser,
+        canActivate: [authGuard]
+      },
+
+      {path: 'quiz', 
+        component: Quiz,
         canActivate: [authGuard]
       }, 
     ]

@@ -1,0 +1,55 @@
+/* Contenedor principal del Quiz (estilo tarjeta como tu chat) */
+.quiz-container {
+  background-color: #1e1e24; /* Fondo gris oscuro/azulado */
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+/* Pregunta */
+.quiz-question {
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+/* Grilla para las opciones (2x2 en pantallas normales, 1 columna en celus) */
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+/* Botones de opciones */
+.btn-option {
+  background-color: #2a2a32; /* Un toque más claro que el fondo */
+  color: #e2e8f0;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+/* Efecto Hover (al pasar el mouse - ¡Acá está la magia morada!) */
+.btn-option:hover {
+  background-color: #3b2d54; /* Fondo morado oscuro */
+  border-color: #a855f7;     /* Borde morado brillante */
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); /* Brillo neón */
+  transform: translateY(-2px); /* Pequeño salto hacia arriba */
+}
+
+/* Efecto Active (cuando lo clickeas) */
+.btn-option:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 5px rgba(168, 85, 247, 0.2);
+}
