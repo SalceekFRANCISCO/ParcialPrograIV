@@ -48,43 +48,83 @@ export class ChatService{
       .subscribe()
     }
   }
- 
 
-  async sendMessage(content: string, user_name: string){
-    const {data: usuarios} = await this.supabase
-    .from('users')
-    .select('id')
-    .eq('user_name', user_name);
+  // async sendMessage(content: string, name: string){
+  //   // const {data: usuarios} = await this.supabase
+  //   // .from('users')
+  //   // .select('id')
+  //   // .eq('user_name', user_name);
 
-    let userId: number;
+  //   const {data: usuarios} = await this.supabase
+  //   .from('users-data')
+  //   .select('id')
+  //   .eq('name', name);
 
-    if(!usuarios || usuarios.length === 0){
-      const {data: nuevoUsuario, error} = await this.supabase
+  //   let userId: number;
+
+  //   if(!usuarios || usuarios.length === 0){
+  //     // const {data: nuevoUsuario, error} = await this.supabase
+  //     // .from('users')
+  //     // .insert({ user_name })
+  //     // .select()
+  //     // .single();
+  //     const {data: nuevoUsuario, error} = await this.supabase
+  //     .from('users-data')
+  //     .insert({ name })
+  //     .select()
+  //     .single();
+
+  //     if(error){
+  //       console.error('error al cargar usuario:',error);
+  //       return;
+  //     }
+  //     userId = nuevoUsuario.id;
+  //   }
+  //   else{
+  //     userId = usuarios[0].id;
+  //   }
+
+  //   await this.supabase.from('mensajes').insert({
+  //     content: content,
+  //     user_id: userId
+  //   })
+
+
+  // }
+
+    async sendMessage(content: string, user_name: string){
+      const {data: usuarios} = await this.supabase
       .from('users')
-      .insert({ user_name })
-      .select()
-      .single();
+      .select('id')
+      .eq('user_name', user_name);
 
-      if(error){
-        console.error('error al cargar usuario:',error);
-        return;
+
+      let userId: number;
+
+      if(!usuarios || usuarios.length === 0){
+        const {data: nuevoUsuario, error} = await this.supabase
+        .from('users')
+        .insert({ user_name })
+        .select()
+        .single();
+
+        if(error){
+          console.error('error al cargar usuario:',error);
+          return;
+        }
+        userId = nuevoUsuario.id;
       }
-      userId = nuevoUsuario.id;
+      else{
+        userId = usuarios[0].id;
+      }
+
+      await this.supabase.from('mensajes').insert({
+        content: content,
+        user_id: userId
+      })
+
+
     }
-    else{
-      userId = usuarios[0].id;
-    }
-
-    
-    // console.log(content);
-
-    await this.supabase.from('mensajes').insert({
-      content: content,
-      user_id: userId
-    })
-
-
-  }
 
 
 

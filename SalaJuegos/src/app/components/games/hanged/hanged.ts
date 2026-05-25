@@ -12,17 +12,14 @@ import { AuthService } from '../../../services/auth';
 export class Hanged {
 
   private hanged = inject(HangedServices);
-
   private auth = inject(AuthService);
 
   lives: number = 6;
-
   secretWord = 'ANGULAR';
+  secretWords = ['ANGULAR', 'TYPESCRIPT', 'REACT', 'POSTGRESQL', 'GITHUB', 'JAVASCRIPT', 'NODEJS', 'MONGODB', 'DOCKER', 'HTML', 'CSS', 'TAILWIND']  
 
   secretWordArray: string[] = [];
-
   indexArray: number[] = [];
-
   ArrayLetter: string[] = [
     'A', 'B', 'C', 'D', 'E', 'F', 'G',
     'H', 'I', 'J', 'K', 'L', 'M', 'N',
@@ -31,15 +28,10 @@ export class Hanged {
   ];
 
   arrayWord: string[] = this.secretWord.split('');
-
   usedLetters = new Set<string>();
-
   gameOver = false;
-
   clock: string = '0s';
-
   seconds: number = 0;
-
   interval: any;
 
   constructor(){
@@ -47,6 +39,8 @@ export class Hanged {
     this.drawSpaces();
 
     this.startTimer();
+
+    // this.mixArraySecretWords();
   }
 
   startTimer(){
@@ -118,6 +112,15 @@ export class Hanged {
       this.checkVictory();
     }
   }
+
+
+  mixArraySecretWords(){
+	const index = Math.floor(Math.random() * this.secretWords.length);
+  	const palabra = this.secretWords[index];
+  	console.log(palabra);
+  	this.secretWord = palabra;
+}
+  
 
   checkLetter(buttonWord: string): boolean {
 

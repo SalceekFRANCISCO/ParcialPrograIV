@@ -1,10 +1,11 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { QuizService } from '../../../services/quiz';
 import { AuthService } from '../../../services/auth';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './quiz.html',
   styleUrl: './quiz.css',
 })
