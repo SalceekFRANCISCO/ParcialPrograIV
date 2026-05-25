@@ -16,24 +16,17 @@ export class HangedServices {
 
   constructor(){}
 
-  async sendData(
-    user_email: string,
-    word: string,
-    victory: boolean,
-    lives: number,
-    selected_letters: number,
-    game_time: number
-  ){
+  async sendData(user_email: string, word: string, victory: boolean, lives: number, selected_letters: number, duration: number){
 
     return await this.supabase
       .from('hanged')
       .insert({
-        user_email,
-        word,
-        victory,
-        lives,
-        selected_letters,
-        game_time
+        word: word,
+        victory: victory,
+        lives: lives,
+        selected_letters: selected_letters,
+        duration: duration,
+        user_email: user_email,
       })
       .then(({ error }) => {
 
@@ -41,6 +34,7 @@ export class HangedServices {
 
           console.log('error: ' + error.message);
         }
+        
       });
   }
 }

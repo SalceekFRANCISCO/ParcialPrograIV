@@ -64,9 +64,7 @@ export class Hanged {
   }
 
   private drawSpaces(){
-
     for(let i = 0; i < this.secretWord.length; i++){
-
       this.secretWordArray.push('_');
     }
   }
@@ -101,27 +99,22 @@ export class Hanged {
   sendValue(buttonWord: string){
 
     if(this.gameOver){
-
       return;
     }
 
     if(this.usedLetters.has(buttonWord)){
-
       return;
     }
 
     this.usedLetters.add(buttonWord);
-
     if(this.arrayWord.includes(buttonWord)){
 
       this.findArrayWord(buttonWord);
-
       this.checkVictory();
 
     } else {
 
       this.lives--;
-
       this.checkVictory();
     }
   }
@@ -136,22 +129,16 @@ export class Hanged {
     if(!this.secretWordArray.includes('_')){
 
       console.log('GANASTE');
-
       this.gameOver = true;
-
       clearInterval(this.interval);
-
       this.saveGame(true);
     }
 
     if(this.lives <= 0){
 
       console.log('PERDISTE');
-
       this.gameOver = true;
-
       clearInterval(this.interval);
-
       this.saveGame(false);
     }
   }
@@ -161,24 +148,10 @@ export class Hanged {
     const user = this.auth.currentUser();
 
     if(!user?.email){
-
       return;
+    }else{
+      await this.hanged.sendData(user.email, this.secretWord, victory, this.lives,this.usedLetters.size,this.seconds);
     }
-
-    await this.hanged.sendData(
-
-      user.email,
-
-      this.secretWord,
-
-      victory,
-
-      this.lives,
-
-      this.usedLetters.size,
-
-      this.seconds
-    );
   }
 
   findArrayWord(buttonWord: string){
