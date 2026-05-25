@@ -15,7 +15,7 @@ export const routes: Routes = [
   {path: 'register', component: Register, canActivate: [guestGuard]},
   {path: 'home', component: Home, canActivate: [authGuard]},
   {path: 'who-i-am', component: WhoIAm, canActivate: [authGuard]},
-  {path: 'chat', component: Chat}, 
+  {path: 'chat', component: Chat, canActivate: [authGuard]}, 
   {path: 'games', component: Games, 
     children: [
       {path: 'hanged', 
