@@ -14,7 +14,7 @@ export class QuizService {
 
   public questions = signal<ApiQuiz[]>([]);
 
-  loadQuestions(){
+  async loadQuestions(){
     this.http.get<any>(this.apiQuiz).subscribe({
       next: (data) => {
         const finalQuestion = data.results.map((quez: any) => ({
@@ -52,11 +52,5 @@ export class QuizService {
   });
 
     }
-
-
-
-
-
-
 
 }

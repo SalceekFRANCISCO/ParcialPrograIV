@@ -4,17 +4,11 @@
 
         <div class="quiz-container">
 
-            <h2
-            class="quiz-question"
-            [innerHTML]="questions()[round()].question">
-            </h2>
+            <h2 class="quiz-question"[innerHTML]="questions()[round()].question"></h2>
 
             <div class="options-grid">
 
-                <button
-                class="btn-option"
-                (click)="verify(
-                questions()[round()].incorrect_answers[0],
+                <button class="btn-option" (click)="verify( questions()[round()].incorrect_answers[0],
                 questions()[round()].correct_answer
                 )"
                 [innerHTML]="questions()[round()].incorrect_answers[0]">
