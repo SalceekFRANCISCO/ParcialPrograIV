@@ -13,6 +13,19 @@
         <div class="lives-box">
             {{lives}} vidas
         </div>
+</div>
+    <div class="hangman-drawing">
+        <div class="gallows-base"></div>
+        <div class="gallows-pole"></div>
+        <div class="gallows-top"></div>
+        <div class="gallows-rope"></div>
+
+        @if (lives <= 5) { <div class="man-head"></div> }
+        @if (lives <= 4) { <div class="man-body"></div> }
+        @if (lives <= 3) { <div class="man-arm-left"></div> }
+        @if (lives <= 2) { <div class="man-arm-right"></div> }
+        @if (lives <= 1) { <div class="man-leg-left"></div> }
+        @if (lives <= 0) { <div class="man-leg-right"></div> }
     </div>
 
     @if (lives <= 0) {

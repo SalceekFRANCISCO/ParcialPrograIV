@@ -11,7 +11,9 @@ export class SupabaseService {
     constructor(){
         const supabaseUrl = environment.supabaseUrl;
         const supabaseKey = environment.supabaseKey;
-        this.client = createClient(supabaseUrl, supabaseKey);
+        this.client = createClient(supabaseUrl, supabaseKey,{
+            auth: {persistSession: false}
+        })
     }
 
     getClient(): SupabaseClient{

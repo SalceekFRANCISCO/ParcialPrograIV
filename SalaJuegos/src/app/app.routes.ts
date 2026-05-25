@@ -20,10 +20,12 @@ export const routes: Routes = [
     children: [
       {path: 'hanged', 
         component: Hanged,
+        canActivate: [authGuard]
       },
       
       {path: 'greater-or-lesser', 
         component: GreaterOrLesser,
+        canActivate: [authGuard]
       }, 
     ]
   },

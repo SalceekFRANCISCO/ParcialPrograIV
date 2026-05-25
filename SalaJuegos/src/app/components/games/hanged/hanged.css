@@ -1,3 +1,74 @@
+.hangman-drawing {
+    position: relative;
+    width: 200px;
+    height: 250px;
+    margin: 0 auto 40px auto;
+}
+
+/* / Partes de la Horca (Gallows) / */
+.gallows-base {
+    position: absolute; bottom: 0; left: 0;
+    width: 100px; height: 8px; background-color: #949ba4;
+    border-radius: 4px;
+}
+.gallows-pole {
+    position: absolute; bottom: 0; left: 46px;
+    width: 8px; height: 250px; background-color: #949ba4;
+    border-radius: 4px;
+}
+.gallows-top {
+    position: absolute; top: 0; left: 46px;
+    width: 100px; height: 8px; background-color: #949ba4;
+    border-radius: 4px;
+}
+.gallows-rope {
+    position: absolute; top: 8px; left: 138px;
+    width: 4px; height: 30px; background-color: #dbdee1;
+}
+
+/* / Partes del Muñeco (Stickman) / */
+.man-head {
+    position: absolute; top: 38px; left: 120px;
+    width: 40px; height: 40px;
+    border: 5px solid #ffffff;
+    border-radius: 50%; 
+    box-sizing: border-box;
+}
+.man-body {
+    position: absolute; top: 78px; left: 138px;
+    width: 5px; height: 60px; background-color: #ffffff;
+    border-radius: 4px;
+}
+.man-arm-left {
+    position: absolute; top: 90px; left: 98px;
+    width: 40px; height: 5px; background-color: #ffffff;
+    border-radius: 4px;
+    transform: rotate(30deg); 
+    transform-origin: right center; 
+}
+.man-arm-right {
+    position: absolute; top: 90px; left: 140px;
+    width: 40px; height: 5px; background-color: #ffffff;
+    border-radius: 4px;
+    transform: rotate(-30deg);
+    transform-origin: left center;
+}
+.man-leg-left {
+    position: absolute; top: 135px; left: 103px;
+    width: 40px; height: 5px; background-color: #ffffff;
+    border-radius: 4px;
+    transform: rotate(-60deg);
+    transform-origin: right center; 
+}
+.man-leg-right {
+    position: absolute; top: 135px; left: 140px;
+    width: 40px; height: 5px; background-color: #ffffff;
+    border-radius: 4px;
+    transform: rotate(60deg);
+    transform-origin: left center;
+}
+
+
 .content-button-back{
     margin-top: 12px;
     margin-left: 12px;
