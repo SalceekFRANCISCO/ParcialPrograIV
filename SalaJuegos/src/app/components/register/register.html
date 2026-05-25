@@ -3,19 +3,52 @@
         <div class="form-title">
             <h4>Registro de usuario</h4>
         </div>
-        <form class="form-login" (ngSubmit) = "onSubmit()">
-            <input class="form-input" [(ngModel)]= "name" name="name"  placeholder="Nombre"  type="text" id="nombre" required>
+        
+        <form class="form-login" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+            
+            <div>
+                <input class="form-input" [(ngModel)]="name" name="name" #nameModel="ngModel" placeholder="Nombre" type="text" id="nombre" required>
+                @if ((nameModel.invalid && nameModel.touched) || (registerForm.submitted && nameModel.invalid)) {
+                    <small class="error-text">El nombre es obligatorio.</small>
+                }
+            </div>
 
-            <input class="form-input" [(ngModel)]= "lastName" name="lastName"  placeholder="Apellido"  type="text" id="apellido" required>
+            <div>
+                <input class="form-input" [(ngModel)]="lastName" name="lastName" #lastNameModel="ngModel" placeholder="Apellido" type="text" id="apellido" required>
+                @if ((lastNameModel.invalid && lastNameModel.touched) || (registerForm.submitted && lastNameModel.invalid)) {
+                    <small class="error-text">El apellido es obligatorio.</small>
+                }
+            </div>
 
-            <input class="form-input" [(ngModel)]= "age" name="age"  placeholder="Edad"  type="text" id="edad" required>
+            <div>
+                <input class="form-input" [(ngModel)]="age" name="age" #ageModel="ngModel" placeholder="Edad" type="text" id="edad" required>
+                @if ((ageModel.invalid && ageModel.touched) || (registerForm.submitted && ageModel.invalid)) {
+                    <small class="error-text">La edad es obligatoria.</small>
+                }
+            </div>
 
-            <input class="form-input" [(ngModel)]= "email" name="email"  placeholder="Email"  type="text" id="constraseña" required>
+            <div>
+                <input class="form-input" [(ngModel)]="email" name="email" #emailModel="ngModel" placeholder="Email" type="email" id="email" required email>
+                @if ((emailModel.invalid && emailModel.touched) || (registerForm.submitted && emailModel.invalid)) {
+                    <small class="error-text">
+                        @if (emailModel.errors?.['required']) { El email es obligatorio. }
+                        @if (emailModel.errors?.['email']) { El formato de email no es válido. }
+                    </small>
+                }
+            </div>
 
-            <input class="form-input" [(ngModel)]= "password" name="password"  placeholder="Constraseña"  type="password" id="constraseña" required>
+            <div>
+                <input class="form-input" [(ngModel)]="password" name="password" #passwordModel="ngModel" placeholder="Contraseña" type="password" id="password" required minlength="6">
+                @if ((passwordModel.invalid && passwordModel.touched) || (registerForm.submitted && passwordModel.invalid)) {
+                    <small class="error-text">
+                        @if (passwordModel.errors?.['required']) { La contraseña es obligatoria. }
+                        @if (passwordModel.errors?.['minlength']) { Debe tener al menos 6 caracteres. }
+                    </small>
+                }
+            </div>
 
             @if (showError()) {
-                <div class="error-message">{{ showError() }} </div>
+                <div class="error-messageServer">{{ showError() }}</div>
             }
             
             <div class="button-center">
