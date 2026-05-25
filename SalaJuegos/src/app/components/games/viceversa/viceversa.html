@@ -1,6 +1,106 @@
-<div class="content-button-back">
-  <a class="button-back" routerLink="/home">
-    <span class="arrow">←</span>
-    <span>Volver</span>
-  </a>
+<div class="game-container">
+
+  <div class="content-button-back">
+
+    <a class="button-back" routerLink="/home">
+
+      <span class="arrow">←</span>
+
+      <span>Volver</span>
+
+    </a>
+
+  </div>
+
+  <div class="game-board">
+
+    <h1 class="title">
+      VICEVERSA
+    </h1>
+
+    <p class="subtitle">
+      Descubrí la palabra correcta
+    </p>
+
+    <!-- PALABRA INVERTIDA -->
+
+    <div class="section-title">
+      Palabra invertida
+    </div>
+
+    <div class="prueba">
+
+      @for(script of reverseWordArray; track $index){
+
+        <button
+          class="button-letter-sript reverse-word"
+        >
+
+          {{script}}
+
+        </button>
+      }
+
+    </div>
+
+    <!-- PALABRA DEL USUARIO -->
+
+    <div class="section-title">
+      Tu respuesta
+    </div>
+
+    <div class="prueba">
+
+      @for(script of arrayScript; track $index){
+
+        <button
+          class="button-letter-sript answer-word"
+        >
+
+          {{script}}
+
+        </button>
+      }
+
+    </div>
+
+    <!-- LETRAS DISPONIBLES -->
+
+    <div class="section-title">
+      Letras disponibles
+    </div>
+
+    <div class="prueba">
+
+      @for(script of reverseWordLetters; track $index){
+
+        <button
+          class="button-letter-sript clickable"
+          (click)="verify(script)"
+        >
+
+          {{script}}
+
+        </button>
+      }
+
+    </div>
+
+    <!-- BOTON -->
+
+    <div class="next-round-container">
+
+      <button
+        class="next-round-button"
+        (click)="nextRound()"
+      >
+
+        Siguiente palabra
+
+      </button>
+
+    </div>
+
+  </div>
+
 </div>
