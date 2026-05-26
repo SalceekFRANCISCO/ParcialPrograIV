@@ -1,1 +1,183 @@
-<p>scores works!</p>
+<div class="scores-container">
+
+    <!-- ========================= -->
+    <!-- QUIZ -->
+    <!-- ========================= -->
+
+    <div class="score-card">
+
+        <h2>Quiz</h2>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Jugador</th>
+                    <th>Correctas</th>
+                    <th>Tiempo</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @for(item of scoresService.userQuiz(); track item.id; let i = $index){
+
+                    <tr>
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ item.user_email }}</td>
+                        <td>{{ item.correct_answers }}</td>
+                        <td>{{ item.duration }}s</td>
+                    </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- ========================= -->
+    <!-- AHORCADO -->
+    <!-- ========================= -->
+
+    <div class="score-card">
+
+        <h2>Ahorcado</h2>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Jugador</th>
+                    <th>Letras</th>
+                    <th>Tiempo</th>
+                    <th>Victoria</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @for(item of scoresService.userHanged(); track item.id; let i = $index){
+
+                    <tr>
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ item.user_email }}</td>
+                        <td>{{ item.selected_letters }}</td>
+                        <td>{{ item.duration }}s</td>
+
+                        <td>
+                            @if(item.victory){
+                                <span>GANO</span>
+                            }
+                            @else{
+                                <span>PERDIO</span>
+                            }
+                        </td>
+                    </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- ========================= -->
+    <!-- MAYOR O MENOR -->
+    <!-- ========================= -->
+
+    <div class="score-card">
+
+        <h2>Mayor o Menor</h2>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Jugador</th>
+                    <th>Puntaje</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @for(item of scoresService.userGreater(); track item.id; let i = $index){
+
+                    <tr>
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ item.user_email }}</td>
+                        <td>{{ item.streak }}</td>
+                    </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- ========================= -->
+    <!-- VICEVERSA -->
+    <!-- ========================= -->
+
+    <div class="score-card">
+
+        <h2>Viceversa</h2>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Jugador</th>
+                    <th>Tiempo</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @for(item of scoresService.userViceversa(); track item.id; let i = $index){
+
+                    <tr>
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ item.user_name }}</td>
+                        <td>{{ item.duration }}s</td>
+                    </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

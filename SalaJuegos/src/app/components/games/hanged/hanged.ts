@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { HangedServices } from '../../../services/hanged';
 import { RouterLink } from "@angular/router";
 import { AuthService } from '../../../services/auth';
+import { dataHanged } from '../../../models/hanged.model';
 
 @Component({
   selector: 'app-hanged',
@@ -167,11 +168,18 @@ export class Hanged {
 
     const user = this.auth.currentUser();
 
-    if(!user?.email){
-      return;
-    }else{
-      await this.hanged.sendData(user.email, this.secretWord, victory, this.lives,this.usedLetters.size,this.seconds);
+    if(user){
+      const data: dataHanged = {
+        user_email: user.email,
+        duration: this.seconds,
+        victory: victory,
+        lives: this.lives,
+        word: this.secretWord,
+        selected_letters: this.usedLetters.size
+      }
+      await this.hanged.sendData(data);
     }
+      
   }
 
   findArrayWord(buttonWord: string){

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 import { environment } from '../../environments/environments';
+import { dataHanged } from '../models/hanged.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,18 +17,11 @@ export class HangedServices {
 
   constructor(){}
 
-  async sendData(user_email: string, word: string, victory: boolean, lives: number, selected_letters: number, duration: number){
+  async sendData(data: dataHanged){
 
     return await this.supabase
       .from('hanged')
-      .insert({
-        word: word,
-        victory: victory,
-        lives: lives,
-        selected_letters: selected_letters,
-        duration: duration,
-        user_email: user_email,
-      })
+      .insert(data)
       .then(({ error }) => {
 
         if(error){

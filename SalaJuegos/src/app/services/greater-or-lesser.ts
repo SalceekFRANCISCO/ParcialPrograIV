@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from '../../environments/environments';
-import { GreaterOrLesserInterface } from '../models/greater-or-lesser.model';
+import { dataGreater } from '../models/greater-or-lesser.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,19 +15,12 @@ export class greaterOrLesserService {
 
   constructor() {}
 
-  async saveGame(game: GreaterOrLesserInterface) {
+  async sendData(data: dataGreater) {
 
-    const { data, error } = await this.supabase
+    return await this.supabase
       .from('greater-or-lesser')
-      .insert(game);
+      .insert(data);
 
-    if (error) {
-
-      console.error('Error saving game', error);
-
-      return;
     }
 
-    console.log('Game saved', data);
   }
-}

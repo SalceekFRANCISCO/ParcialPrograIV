@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ViceversaService } from '../../../services/viceversa';
 import { AuthService } from '../../../services/auth';
+import { dataViceversa } from '../../../models/viceversa.model';
 
 @Component({
   selector: 'app-viceversa',
@@ -147,8 +148,14 @@ export class Viceversa {
     const user = this.authService.currentUser();
     
     if(user?.email){
+
+      const data: dataViceversa = {
+        user_name: user.email,
+        duration: this.seconds
+      }
+
       console.log('Enviando datos a la base de datos...');
-      await this.viceversaService.sendData(user.email, this.seconds);
+      await this.viceversaService.sendData(data);
 
     }
   }

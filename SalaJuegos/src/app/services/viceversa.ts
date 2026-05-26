@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { SupabaseService } from './supabase';
+import { dataViceversa } from '../models/viceversa.model';
 
 @Injectable({
   providedIn: 'root',
@@ -8,14 +9,12 @@ import { SupabaseService } from './supabase';
 export class ViceversaService {
   private supabase = inject(SupabaseService);
 
-  async sendData(user: string, duration: number){
+  async sendData(data: dataViceversa){
+
     return await this.supabase
     .getClient()
     .from('viceversa')
-    .insert({
-      user_name: user,
-      duration: duration
-    }).then(({ error }) => {
+    .insert(data).then(({ error }) => {
         if(error){
           console.log('error: ' + error.message);
         }

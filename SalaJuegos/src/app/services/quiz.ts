@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { SupabaseService } from './supabase';
-import { ApiQuiz } from '../models/apiquiz.model';
+import { ApiQuiz, dataQuiz } from '../models/apiquiz.model';
 
 @Injectable({
   providedIn: 'root',
@@ -34,22 +34,16 @@ export class QuizService {
     return this.questions.asReadonly();
     }
 
-  async sendData(user_email: string, correct_answers: number, duration: number){
+  async sendData(data: dataQuiz){
 
     return await this.supabase
     .getClient()
     .from('quiz')
-    .insert({
-        user_email: user_email,
-        questions: this.questions().length,
-        correct_answers: correct_answers,
-        duration: duration,
-    }).then(({ error }) => {
-
+    .insert(data).then(({ error }) => {
         if(error){
           console.log('error: ' + error.message);
         }
-  });
+      });
 
     }
 

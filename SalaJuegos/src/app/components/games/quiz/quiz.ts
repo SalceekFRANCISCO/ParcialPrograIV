@@ -2,6 +2,7 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { QuizService } from '../../../services/quiz';
 import { AuthService } from '../../../services/auth';
 import { RouterLink } from '@angular/router';
+import { dataQuiz } from '../../../models/apiquiz.model';
 
 @Component({
   selector: 'app-quiz',
@@ -79,18 +80,18 @@ export class Quiz implements OnInit {
   	async sendData(){
 
 	const user = this.authService.currentUser();
-
+	
 	if (user?.email){
-		return await this.quizService.sendData(user.email,this.correctAnswers, this.seconds);
+		const data: dataQuiz = {
+			user_email: user.email,
+			correct_answers: this.correctAnswers,
+			duration: this.seconds,
+			questions: this.questions.length
+
+		}
+		return await this.quizService.sendData(data);
 	}
 	}
 
-
-// ○ Debe obtener los datos de una api.
-// ○ Puede ser una api de preguntas o una api con información a la que luego se le agregue la
-// funcionalidad de preguntados. Puede estar en inglés.
-// ○ Las opciones de elección deben ser botones.
-// ○ Al finalizar la partida, guardar en la base de datos: el usuario que jugó, cantidad de
-// preguntas acertadas, etc.
 
 }

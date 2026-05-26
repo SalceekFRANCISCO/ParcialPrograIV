@@ -5,3 +5,13 @@ export interface ApiQuiz {
     category: string,
     difficulty: string
 }
+
+
+export interface dataQuiz {
+    id?: number,
+    user_email: string;
+    correct_answers: number,
+    duration: number,
+    questions: number
+}
+

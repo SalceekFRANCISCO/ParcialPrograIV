@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ScoreService } from '../../services/score';
 
 @Component({
   selector: 'app-scores',
@@ -6,4 +7,15 @@ import { Component } from '@angular/core';
   templateUrl: './scores.html',
   styleUrl: './scores.css',
 })
-export class Scores {}
+export class Scores {
+  public scoresService = inject(ScoreService);
+
+  dataHanged = this.scoresService.getDataHanged();
+  dataGreater = this.scoresService.getDataGreaterOrLesser();
+  dataViceversa = this.scoresService.getDataViceversa();
+  dataQuiz = this.scoresService.getDataQuiz();
+
+
+
+
+}

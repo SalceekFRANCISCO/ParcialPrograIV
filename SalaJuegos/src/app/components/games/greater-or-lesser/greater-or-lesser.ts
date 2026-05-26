@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { greaterOrLesserService } from '../../../services/greater-or-lesser';
-import { GreaterOrLesserInterface } from '../../../models/greater-or-lesser.model';
+import { dataGreater } from '../../../models/greater-or-lesser.model';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth';
 
@@ -114,14 +114,16 @@ export class GreaterOrLesser implements OnInit {
 
   async saveGame(): Promise<void> {
 
-    const game: GreaterOrLesserInterface = {
+    const userDB = this.authService.currentUser();
 
-      user_email: 'Fran',
+    if(userDB){
+      const data: dataGreater = {
+        user_email: userDB.email,
+        streak: this.hits
+      };
 
-      streak: this.hits
-    };
-
-    await this.greaterOrLesserService.saveGame(game);
+      await this.greaterOrLesserService.sendData(data);
+    }
   }
 
 
