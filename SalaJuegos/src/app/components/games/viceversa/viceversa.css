@@ -43,21 +43,19 @@
     font-weight: 900;
 }
 
-/* Contenedor Principal (Mantiene el mismo fondo que tu navbar y app) */
 .game-container {
   min-height: 100vh;
   padding: 30px 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tipografía limpia como la de tu app */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
   display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
 }
 
-/* Botón Volver (Copiado tal cual el de tu captura) */
 .content-button-back {
   width: 100%;
-  max-width: 900px; /* Alineado con el flujo de tu diseño */
+  max-width: 900px; 
   display: flex;
   justify-content: flex-start;
   margin-bottom: 50px;
@@ -67,11 +65,11 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background-color: #6a1b9a; /* Violeta intermedio */
+  background-color: #6a1b9a; 
   color: white;
   text-decoration: none;
   padding: 10px 24px;
-  border-radius: 8px; /* Bordes sutiles como tu botón */
+  border-radius: 8px; 
   font-weight: bold;
   font-size: 0.95rem;
   border: none;
@@ -80,29 +78,27 @@
 }
 
 .button-back:hover {
-  background-color: #7b1fa2; /* Un toque más claro al pasar el mouse */
+  background-color: #7b1fa2; 
 }
 
 .button-back:active {
   transform: scale(0.98);
 }
 
-/* Tablero del juego (La gran tarjeta central oscura) */
 .game-board {
-  background-color: #1d1d26; /* Gris oscuro idéntico al contenedor de tu pregunta */
+  background-color: #1d1d26; 
   border-radius: 20px;
   padding: 40px;
   display: flex;
   flex-direction: column;
-  gap: 30px; /* Reemplaza los <br> con espacio controlado */
+  gap: 30px; 
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 650px; /* Ancho similar al de tu tarjeta */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra suave para dar profundidad */
+  max-width: 650px; 
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
 }
 
-/* Contenedores de las filas de letras */
 .prueba {
   display: flex;
   flex-wrap: wrap;
@@ -111,15 +107,14 @@
   width: 100%;
 }
 
-/* Botón de Letras Base (Las que muestran el progreso o están fijas) */
 .button-letter-sript {
-  background-color: #282830; /* Gris un poco más claro para que resalte del fondo */
+  background-color: #282830; 
   color: #ffffff;
   font-size: 1.2rem;
   font-weight: 600;
   width: 50px;
   height: 50px;
-  border-radius: 8px; /* Mismo radio de borde que tus opciones */
+  border-radius: 8px; 
   border: none;
   display: flex;
   align-items: center;
@@ -128,29 +123,25 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Botón de Letras Clickeables (Las de abajo para jugar) */
 .button-letter-sript.clickable {
-  background-color: #31313d; /* Un gris que invita a ser pulsado */
+  background-color: #31313d; 
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.05);
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-/* Efecto Hover para las letras que sí se pueden tocar */
 .button-letter-sript.clickable:hover {
-  background-color: #424252; /* Se aclara al pasar el cursor */
+  background-color: #424252; 
 }
 
-/* Efecto Click */
 .button-letter-sript.clickable:active {
-  transform: scale(0.92); /* Se achica un poquito simulando la presión */
+  transform: scale(0.92); 
 }
 
 
 
 
 
-/* TITULOS */
 
 .title{
 
@@ -191,7 +182,6 @@
     text-align: center;
 }
 
-/* FILAS */
 
 .prueba{
 
@@ -208,7 +198,6 @@
     margin-bottom: 20px;
 }
 
-/* BOTONES LETRAS */
 
 .button-letter-sript{
 
@@ -231,7 +220,6 @@
     transition: 0.2s;
 }
 
-/* PALABRA INVERTIDA */
 
 .reverse-word{
 
@@ -240,7 +228,6 @@
     color: #a855f7;
 }
 
-/* RESPUESTA */
 
 .answer-word{
 
@@ -249,7 +236,6 @@
     border: 2px solid #444;
 }
 
-/* CLICKABLE */
 
 .clickable{
 
@@ -265,7 +251,6 @@
     background: #a855f7;
 }
 
-/* DESHABILITADO */
 
 .clickable:disabled{
 
@@ -276,7 +261,6 @@
     transform: none;
 }
 
-/* BOTON SIGUIENTE */
 
 .next-round-container{
 
