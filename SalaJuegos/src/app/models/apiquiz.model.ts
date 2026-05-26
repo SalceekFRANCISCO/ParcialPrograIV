@@ -9,7 +9,7 @@ export interface ApiQuiz {
 
 export interface dataQuiz {
     id?: number,
-    user_email: string;
+    user_email: string | undefined;
     correct_answers: number,
     duration: number,
     questions: number

@@ -43,7 +43,6 @@
     font-weight: 900;
 }
 
-/* Contenedor Principal (Consola de juego) */
 .game-container {
   max-width: 450px;
   margin: 3rem auto;
@@ -55,7 +54,6 @@
   font-family: 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Header / Scoreboard */
 .scoreboard {
   display: flex;
   justify-content: space-between;
@@ -77,7 +75,6 @@
   border-radius: 6px;
 }
 
-/* Zona del Tablero */
 .game-board {
   display: flex;
   flex-direction: column;
@@ -86,7 +83,6 @@
   margin-top: 2rem;
 }
 
-/* Contenedor e interfaz de la Carta */
 .card-area {
   perspective: 1000px;
 }
@@ -125,14 +121,12 @@
   margin-top: 0.5rem;
 }
 
-/* Sección de Botones */
 .controls {
   display: flex;
   gap: 1.2rem;
   width: 100%;
 }
 
-/* Estilo Base de Botones */
 .btn {
   flex: 1;
   padding: 1rem;
@@ -152,7 +146,6 @@
   transform: scale(0.98);
 }
 
-/* Botón Mayor (Verde) */
 .btn-greater {
   background-color: #2b8a3e;
   color: white;
@@ -163,7 +156,6 @@
   box-shadow: 0 0 12px rgba(43, 138, 62, 0.4);
 }
 
-/* Botón Menor (Rojo) */
 .btn-lesser {
   background-color: #c92a2a;
   color: white;
@@ -174,7 +166,6 @@
   box-shadow: 0 0 12px rgba(201, 42, 42, 0.4);
 }
 
-/* Botón Secundario (Plantarse) */
 .btn-secondary {
   background-color: #373a40;
   color: #dcdcdc;
@@ -187,7 +178,6 @@
   color: #ffffff;
 }
 
-/* Botón Reintentar (Azul) */
 .btn-primary {
   background-color: #1c7ed6;
   color: white;
@@ -198,7 +188,6 @@
   background-color: #1971c2;
 }
 
-/* Pantalla de Fin de Juego */
 .game-over-screen {
   text-align: center;
   display: flex;

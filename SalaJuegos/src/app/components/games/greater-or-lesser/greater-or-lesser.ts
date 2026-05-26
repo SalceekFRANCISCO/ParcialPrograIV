@@ -3,11 +3,8 @@ import { greaterOrLesserService } from '../../../services/greater-or-lesser';
 import { dataGreater } from '../../../models/greater-or-lesser.model';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth';
+import { Card } from '../../../models/card.model';
 
-interface Card {
-  value: number;
-  suit: string;
-}
 
 @Component({
   selector: 'app-greater-or-lesser',
@@ -19,6 +16,7 @@ interface Card {
 export class GreaterOrLesser implements OnInit {
 
   private authService = inject(AuthService);
+  private greaterOrLesserService = inject(greaterOrLesserService);
 
   user = this.authService.currentUser;
 
@@ -28,7 +26,7 @@ export class GreaterOrLesser implements OnInit {
   suits: string[] = ['♠', '♥', '♦', '♣'];
 
   constructor(
-    private greaterOrLesserService: greaterOrLesserService
+    // private greaterOrLesserService: greaterOrLesserService
   ) {}
 
   ngOnInit(): void {
@@ -48,14 +46,10 @@ export class GreaterOrLesser implements OnInit {
 
     const randomNumber = Math.floor(Math.random() * 13) + 1;
 
-    const randomSuit = this.suits[
-      Math.floor(Math.random() * this.suits.length)
-    ];
+    const randomSuit = this.suits[Math.floor(Math.random() * this.suits.length)];
 
-    return {
-      value: randomNumber,
-      suit: randomSuit
-    };
+    return { value: randomNumber, suit: randomSuit };
+
   }
 
   guess(option: 'higher' | 'lower'): void {
@@ -63,22 +57,18 @@ export class GreaterOrLesser implements OnInit {
     if (this.gameFinished) return;
 
     const previousCard = this.currentCard;
-
     const newCard = this.generateCard();
 
-    console.log('Previous card:', previousCard.value);
-
-    console.log('New card:', newCard.value);
+    // console.log('Previous card:', previousCard.value);
+    // console.log('New card:', newCard.value);
 
     let correctGuess: boolean = false;
 
     if (option === 'higher') {
-
       correctGuess = newCard.value > previousCard.value;
     }
 
     if (option === 'lower') {
-
       correctGuess = newCard.value < previousCard.value;
     }
 
@@ -87,23 +77,20 @@ export class GreaterOrLesser implements OnInit {
     if (correctGuess) {
 
       this.hits++;
-
-      console.log('Correct');
+      // console.log('Correct');
 
     } else {
+      // console.log('Game Over');
 
-      console.log('Game Over');
-
-      this.gameFinished = true;
-
-      this.saveGame();
+      // this.gameFinished = true;
+      // this.saveGame();
+      this.stand();
     }
   }
 
   stand(): void {
 
     this.gameFinished = true;
-
     this.saveGame();
   }
 
@@ -112,20 +99,36 @@ export class GreaterOrLesser implements OnInit {
     this.startGame();
   }
 
+  splitUser(): string | undefined {
+    let userName: string | undefined = '';
+
+    if(this.authService.currentUser()){
+      const fullName = this.authService.currentUser()?.email;
+
+      if(fullName){
+        userName = fullName.split('@')[0];
+        return userName;
+      }
+
+    }
+    return userName;
+
+  }
+
   async saveGame(): Promise<void> {
 
     const userDB = this.authService.currentUser();
+    const userName = this.splitUser();
 
     if(userDB){
       const data: dataGreater = {
-        user_email: userDB.email,
+        user_email: userName,
         streak: this.hits
       };
 
       await this.greaterOrLesserService.sendData(data);
     }
   }
-
 
   showuser(): string | undefined {
     let userName: string | undefined = '';

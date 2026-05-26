@@ -13,6 +13,7 @@ export class SupabaseService {
         const supabaseKey = environment.supabaseKey;
         this.client = createClient(supabaseUrl, supabaseKey,{
             auth: {persistSession: false}
+            // auth: {persistSession: true}
         })
     }
 

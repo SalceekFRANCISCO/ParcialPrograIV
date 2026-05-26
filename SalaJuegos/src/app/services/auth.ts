@@ -23,9 +23,11 @@ export class AuthService {
       this.checkSession();
     }
 
-
     async verifyAuthenticated(): Promise<boolean>{
-      const {data: {session}} = await this.supabase.getClient().auth.getSession();
+      const {data: {session}} = await this.supabase
+      .getClient()
+      .auth
+      .getSession();
 
       if(session){
         return true;
@@ -58,17 +60,18 @@ export class AuthService {
         return false;
       }
       else{
-          if(data.user){
+          // if(data.user){
+          if(data.session){
             this.user.set({id: data.user.id, email: data.user.email ?? ''});
-            this.router.navigate(['/home']);
             this.currentUser.set(this.user());
+            await this.router.navigate(['/home']);
             return true;
           }
           else{
             return false;
           }
       }
-  }
+    }
 
     async logout(){
       await this.supabase.getClient().auth.signOut();
@@ -77,7 +80,6 @@ export class AuthService {
       this.errorMessage.set(null);
       this.router.navigate(['/login']);
     }
-
 
     async registerUser(name: string, lastName: string, age: string, email: string, password: string){
       const {data, error} = await this.supabase.getClient().auth.signUp({
@@ -95,14 +97,14 @@ export class AuthService {
       else{
         if(data.user){
           await this.supabase.saveUserData(data.user?.id, name, lastName, age, email);
-          this.login(email, password);
+          await this.login(email, password);
         }
       }
     }
 
     clearError(): void{
       this.errorMessage.set(null);
-  } 
+    } 
 
 
 }

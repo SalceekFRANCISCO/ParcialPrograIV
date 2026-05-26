@@ -6,72 +6,37 @@
 </div>
 
 @if(!gameFinished){
+  @if(questions().length > 0){
+    <div class="quiz-container">
+      <h2 class="quiz-question" [innerHTML]="questions()[round()].question"></h2>
 
-    @if(questions().length > 0){
+      <div class="options-grid">
+        @for(answer of questions()[round()].answers; track answer){
+          <button 
+            class="btn-option" 
+            (click)="verify(answer, questions()[round()].correct_answer)" 
+            [innerHTML]="answer">
+          </button>
+        }
+      </div>
+    </div>
+  }
+} @else {
+  <div class="result-card">
+    <h1>QUIZ TERMINADO</h1>
+    <p>Duración: {{ clock }}</p>
+    <h2>Acertaste {{ correctAnswers }} de {{ questions().length }}</h2>
 
-        <div class="quiz-container">
-
-            <h2 class="quiz-question"[innerHTML]="questions()[round()].question"></h2>
-
-            <div class="options-grid">
-
-                <button class="btn-option" (click)="verify( questions()[round()].incorrect_answers[0],
-                questions()[round()].correct_answer
-                )"
-                [innerHTML]="questions()[round()].incorrect_answers[0]">
-                </button>
-
-                <button
-                class="btn-option"
-                (click)="verify(
-                questions()[round()].incorrect_answers[1],
-                questions()[round()].correct_answer
-                )"
-                [innerHTML]="questions()[round()].incorrect_answers[1]">
-                </button>
-
-                <button
-                class="btn-option"
-                (click)="verify(
-                questions()[round()].incorrect_answers[2],
-                questions()[round()].correct_answer
-                )"
-                [innerHTML]="questions()[round()].incorrect_answers[2]">
-                </button>
-
-                <button
-                class="btn-option"
-                (click)="verify(
-                questions()[round()].correct_answer,
-                questions()[round()].correct_answer
-                )"
-                [innerHTML]="questions()[round()].correct_answer">
-                </button>
-
-            </div>
-
-        </div>
-
+    @if(correctAnswers >= 4){
+      <p>Muy bien!</p>
+    } @else if(correctAnswers >= 2){
+      <p>Nada mal</p>
+    } @else {
+      <p>pues...</p>
     }
 
-} @else {
-
-    <div class="result-card">
-        <h1>QUIZ TERMINADO</h1>
-        <p>Duración: {{ clock }}</p>
-        <h2>
-            Acertaste {{ correctAnswers }}
-            de {{ questions().length }}
-        </h2>
-        @if(correctAnswers >= 4){
-            <p>Muy bien!</p>
-        } @else if(correctAnswers >= 2){
-            <p>Nada mal</p>
-        } @else {
-            <p>pues...</p>
-        }
-        <div>
-            <button (click)="startAgain()">Play Again</button>
-        </div>
+    <div>
+      <button (click)="startAgain()">Play Again</button>
     </div>
+  </div>
 }

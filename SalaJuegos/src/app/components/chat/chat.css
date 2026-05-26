@@ -27,7 +27,6 @@
 
 }
 
-/* HEADER */
 
 .chat-header {
 
@@ -54,7 +53,6 @@
     font-weight: bold;
 }
 
-/* USER INPUT */
 
 .user-input {
 
@@ -74,7 +72,6 @@
     font-size: 14px;
 }
 
-/* MESSAGE LIST */
 
 .messages-list {
 
@@ -97,7 +94,6 @@
         );
 }
 
-/* SCROLL */
 
 .messages-list::-webkit-scrollbar {
 
@@ -111,7 +107,6 @@
     border-radius: 10px;
 }
 
-/* MESSAGE */
 
 .message-item {
 
@@ -143,7 +138,6 @@
     transition: 0.2s;
 }
 
-/* TOP */
 
 .message-top {
 
@@ -165,7 +159,6 @@
     letter-spacing: 0.3px;
 }
 
-/* CONTENT */
 
 .message-content {
 
@@ -178,7 +171,6 @@
     color: #f2f2f2;
 }
 
-/* DATE */
 
 .message-date {
 
@@ -189,7 +181,6 @@
     align-self: flex-end;
 }
 
-/* INPUT AREA */
 
 .input-area {
 
@@ -223,7 +214,6 @@
     font-size: 14px;
 }
 
-/* BUTTON */
 
 .input-area button {
 
@@ -260,7 +250,6 @@
     cursor: not-allowed;
 }
 
-/* ANIMATION */
 
 @keyframes fadeIn {
 
@@ -279,7 +268,6 @@
     }
 }
 
-/* RESPONSIVE */
 
 @media (max-width: 768px) {
 

@@ -119,7 +119,6 @@ export class Hanged {
     }
   }
 
-
   mixArraySecretWords(){
 
   let index: number;
@@ -137,7 +136,6 @@ export class Hanged {
   this.arrayWord = this.secretWord.split('');
   console.log(this.secretWord);
 }
-  
 
   checkLetter(buttonWord: string): boolean {
 
@@ -164,13 +162,32 @@ export class Hanged {
     }
   }
 
+
+  splitUser(): string | undefined {
+    let userName: string | undefined = '';
+
+    if(this.auth.currentUser()){
+      const fullName = this.auth.currentUser()?.email;
+
+      if(fullName){
+        userName = fullName.split('@')[0];
+        return userName;
+      }
+
+    }
+    return userName;
+
+  }
+
+
   async saveGame(victory: boolean){
 
     const user = this.auth.currentUser();
+    const userName = this.splitUser();
 
     if(user){
       const data: dataHanged = {
-        user_email: user.email,
+        user_email: userName,
         duration: this.seconds,
         victory: victory,
         lives: this.lives,

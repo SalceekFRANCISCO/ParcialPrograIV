@@ -7,13 +7,11 @@
 
 <div class="game-container">
 
-  <!-- Scoreboard -->
   <header class="scoreboard">
 
   @if(user()){
     <div class="player-info">
         <span>Player: <strong class="highlight">{{showuser()}}</strong></span>
-        <!-- <span>Player: <strong class="highlight">Fran</strong></span> -->
       </div>
   }
 
@@ -30,84 +28,35 @@
 
       <!-- Card -->
       <div class="card-area">
-
         <div class="playing-card-placeholder">
-
           <div class="card-content">
 
-            <span class="card-value">
-              {{ currentCard.value }}
-            </span>
-
-            <span class="card-suit">
-              {{ currentCard.suit }}
-            </span>
+            <span class="card-value">{{ currentCard.value }}</span>
+            <span class="card-suit">{{ currentCard.suit }}</span>
 
           </div>
-
         </div>
-
       </div>
 
       <!-- Buttons -->
       <section class="controls">
-
-        <button
-          class="btn btn-greater"
-          (click)="guess('higher')">
-
-          <span class="icon">▲</span>
-
-          Higher
-        </button>
-
-        <button
-          class="btn btn-lesser"
-          (click)="guess('lower')">
-
-          <span class="icon">▼</span>
-
-          Lower
-        </button>
-
+        <button class="btn btn-greater" (click)="guess('higher')"><span class="icon">▲</span>Higher</button>
+        <button class="btn btn-lesser" (click)="guess('lower')">  <span class="icon">▼</span>Lower</button>
       </section>
 
       <!-- Stand -->
       <footer class="game-footer">
-
-        <button
-          class="btn btn-secondary"
-          (click)="stand()">
-
-          Stand and Save
-        </button>
-
+        <button class="btn btn-secondary"(click)="stand()"> Stand and Save </button>
       </footer>
 
     } @else {
 
-      <!-- Game Over -->
       <div class="game-over-screen">
-
         <h2>Game Over!</h2>
-
-        <p>
-          You got a total of
-          <strong>{{ hits }}</strong>
-          correct guesses.
-        </p>
-
-        <button
-          class="btn btn-primary"
-          (click)="restartGame()">
-
-          Play Again
-        </button>
-
+        <p> You got a total of <strong>{{ hits }}</strong> correct guesses.</p>
+        <button class="btn btn-primary" (click)="restartGame()">Play Again</button>
       </div>
-
     }
 
   </main>
-
 </div>

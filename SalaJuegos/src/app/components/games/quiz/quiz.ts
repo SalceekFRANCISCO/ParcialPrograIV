@@ -77,13 +77,30 @@ export class Quiz implements OnInit {
     }
   	} 
 
+	splitUser(): string | undefined {
+    let userName: string | undefined = '';
+
+    if(this.authService.currentUser()){
+      const fullName = this.authService.currentUser()?.email;
+
+      if(fullName){
+        userName = fullName.split('@')[0];
+        return userName;
+      }
+
+    }
+    return userName;
+
+  	}
+
   	async sendData(){
 
 	const user = this.authService.currentUser();
+	const userName = this.splitUser();
 	
 	if (user?.email){
 		const data: dataQuiz = {
-			user_email: user.email,
+			user_email: userName,
 			correct_answers: this.correctAnswers,
 			duration: this.seconds,
 			questions: this.questions.length

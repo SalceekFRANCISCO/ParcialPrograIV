@@ -43,7 +43,7 @@ export const routes: Routes = [
     ]
   },
   {path: 'scores', component: Scores, canActivate: [authGuard]},
-  {path: '**', component: Login},
+  {path: '**', redirectTo: 'login'},
 
   
 

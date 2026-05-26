@@ -5,7 +5,6 @@
     margin: 0 auto 40px auto;
 }
 
-/* / Partes de la Horca (Gallows) / */
 .gallows-base {
     position: absolute; bottom: 0; left: 0;
     width: 100px; height: 8px; background-color: #949ba4;
@@ -26,7 +25,6 @@
     width: 4px; height: 30px; background-color: #dbdee1;
 }
 
-/* / Partes del Muñeco (Stickman) / */
 .man-head {
     position: absolute; top: 38px; left: 120px;
     width: 40px; height: 40px;
@@ -127,7 +125,6 @@
     margin-bottom: 86px;
 }
 
-/* TOP BAR */
 
 .top-bar{
 
@@ -158,7 +155,6 @@
         0 4px 10px rgba(0,0,0,0.2);
 }
 
-/* MENSAJES */
 
 .status{
 
@@ -196,7 +192,6 @@
     color: #fca5a5;
 }
 
-/* RESET */
 
 .reset-container{
 
@@ -235,7 +230,6 @@
     transform: translateY(-2px);
 }
 
-/* PALABRA */
 
 .word-container{
 
@@ -250,7 +244,6 @@
     margin-bottom: 50px;
 }
 
-/* LETRAS DE PALABRA */
 
 .button-letter-sript{
 
@@ -272,7 +265,6 @@
         0 4px 10px rgba(0,0,0,0.25);
 }
 
-/* TECLADO */
 
 .for{
 
@@ -286,7 +278,6 @@
     gap: 14px;
 }
 
-/* TUS BOTONES NARANJAS */
 
 .button-letter{
 

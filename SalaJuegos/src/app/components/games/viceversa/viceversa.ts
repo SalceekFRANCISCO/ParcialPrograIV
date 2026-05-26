@@ -141,16 +141,35 @@ export class Viceversa {
     await this.sendData();
   }
 
+
+  splitUser(): string | undefined {
+    let userName: string | undefined = '';
+
+    if(this.authService.currentUser()){
+      const fullName = this.authService.currentUser()?.email;
+
+      if(fullName){
+        userName = fullName.split('@')[0];
+        return userName;
+      }
+
+    }
+    return userName;
+
+  }
+
+
   async sendData() {
 
     // Al finalizar la partida, guardar en la base de datos: el usuario que jugó y algún dato que
     // mida su desempeño (puntaje, tiempo en finalizar, etc).
     const user = this.authService.currentUser();
+    const userName = this.splitUser();
     
     if(user?.email){
 
       const data: dataViceversa = {
-        user_name: user.email,
+        user_name: userName,
         duration: this.seconds
       }
 
